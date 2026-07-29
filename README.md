@@ -37,18 +37,22 @@ pip3 install requests beautifulsoup4
 
 ### 3. Get the price list
 
-Grab the current Master Price List xlsx from its usual internal location.
-**Do not put it in this repo folder's git tracking — it stays local only**
-(the .gitignore already blocks it, just don't force it).
+Grab the current Master Price List xlsx from its usual internal location and
+copy it into this repo folder (safe — the .gitignore prevents it from being
+committed). **Do not force-add it to git.**
 
 ### 4. Generate specs.csv
 
 The website has no dimensions or case-pack data, so those come from the price
-list:
+list. Run this from the repo folder, using the file's real full name in
+quotes:
 
 ```
 python3 extract_specs.py "2026 WPH ABC Master Price List.xlsx"
 ```
+
+(Windows: use `python` instead of `python3`. If the xlsx lives elsewhere,
+drag the file into the terminal window to paste its full path instead.)
 
 First run writes `blocks.txt` (every product block found) and
 `specs_master.csv`. Check `mapping.csv` — if the products you need aren't
