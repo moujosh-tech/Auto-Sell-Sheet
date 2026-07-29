@@ -29,10 +29,32 @@ from collections import OrderedDict
 
 from openpyxl import load_workbook
 
-DIMS_RE = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*[xX]\s*(\d+(?:\.\d+)?)\s*$")
+DIMS_RE = re.compile(
+    r"^\s*(\d+(?:\.\d+)?)\s*[xX]\s*(\d+(?:\.\d+)?)(?:\s*[xX]\s*(\d+(?:\.\d+)?))?\s*$")
 
 # description prefixes that name the size/type shown in the sell sheet table
 TYPE_PREFIX_RE = re.compile(r"^([A-Za-z /&'-]+?)\s*-\s")
+
+SIZEISH_RE = re.compile(
+    r"\b(TWIN|FULL|QUEEN|KING|STANDARD|JUMBO|EURO|BODY|CAP)\b", re.I)
+DEPTH_RE = re.compile(r'^\d+(?:\.\d+)?"$')
+
+
+def split_desc(desc):
+    """Description -> (item_type, size).
+    'Pillow Case - Standard - Ultra Touch'   -> ('Pillow Case', 'Standard')
+    'Twin Blanket - Sovereign Cotton'        -> ('', 'Twin Blanket')
+    'Bath Towel - Martex Single Cam ...'     -> ('', 'Bath Towel')
+    """
+    parts = [norm(p) for p in desc.split(" - ") if norm(p)]
+    if not parts:
+        return "", ""
+    seg1 = parts[0]
+    seg2 = parts[1] if len(parts) > 1 else ""
+    if seg2 and len(seg2) <= 20 and SIZEISH_RE.search(seg2):
+        return seg1, seg2
+    return "", seg1
+
 
 
 def norm(s):
@@ -42,7 +64,8 @@ def norm(s):
 def fmt_dims(raw):
     m = DIMS_RE.match(str(raw or ""))
     if m:
-        return f'{m.group(1)}" x {m.group(2)}"'
+        parts = [g for g in m.groups() if g]
+        return " x ".join(f'{p}"' for p in parts)
     return norm(raw)
 
 
@@ -54,28 +77,39 @@ def find_header(ws):
             v = norm(cell.value).replace("\n", " ").upper()
             if v and v not in names:  # keep first — headers repeat in the
                 names[v] = cell.column - 1  # "Old SKU Info" area to the right
-        if "GSM" in names and "DESCRIPTION" in names:
+        if "DESCRIPTION" in names and any(k == "SIZE" or k.startswith("CUT SIZE")
+                                          or k.startswith("FINISH SIZE")
+                                          for k in names):
+            def first(pred):
+                for k, v in names.items():
+                    if pred(k):
+                        return v
+                return None
             cols = {
-                "size": names.get("SIZE"),
-                "weight": names.get("LBS/DZ"),
+                "size": first(lambda k: k.startswith("FINISH SIZE")) 
+                        if first(lambda k: k.startswith("FINISH SIZE")) is not None
+                        else names.get("SIZE"),
+                "cut": first(lambda k: k.startswith("CUT SIZE")),
+                "hem": first(lambda k: k.startswith("HEM")),
+                "weight": first(lambda k: k == "LBS/DZ" or k.startswith("WEIGHT")),
                 "gsm": names.get("GSM"),
                 "desc": names.get("DESCRIPTION"),
-                "color": names.get("COLOR"),
+                "color": first(lambda k: k.startswith("COLOR")),
                 "small": names.get("SMALL CASE"),
                 "large": names.get("LARGE CASE"),
+                "case": names.get("CASE"),
             }
             return row[0].row, cols
     return None, None
 
 
 def is_block_header(rowvals, cols):
-    """A block header has long text in col A and no GSM/desc data."""
+    """A block header has long text in col A and no description data."""
     a = norm(rowvals[0] if rowvals else "")
     if len(a) < 30:
         return False
-    gsm = rowvals[cols["gsm"]] if cols["gsm"] is not None and cols["gsm"] < len(rowvals) else None
     desc = rowvals[cols["desc"]] if cols["desc"] is not None and cols["desc"] < len(rowvals) else None
-    return gsm in (None, "") and desc in (None, "")
+    return desc in (None, "")
 
 
 def cellv(rowvals, idx):
@@ -119,14 +153,35 @@ def extract(path):
             gsm = num(cellv(rowvals, cols["gsm"]))
             if not desc:
                 continue
-            case = num(cellv(rowvals, cols["small"])) or num(cellv(rowvals, cols["large"]))
+            case = (num(cellv(rowvals, cols["small"]))
+                    or num(cellv(rowvals, cols["large"]))
+                    or num(cellv(rowvals, cols.get("case"))))
+            weight = num(cellv(rowvals, cols["weight"]))
+            # some tabs put GSM in the Weight column (e.g. Atelier Luxe "280")
+            if not gsm and weight:
+                try:
+                    if float(weight) > 50:
+                        gsm, weight = weight, ""
+                except ValueError:
+                    pass
+            item_type, size = split_desc(desc)
+            dims = fmt_dims(cellv(rowvals, cols["size"]))
+            hem = cellv(rowvals, cols.get("hem"))
+            # fitted items: append pocket depth to dimensions (39" x 75" x 9")
+            # unless the size column already carried three dimensions
+            if (hem and DEPTH_RE.match(hem) and "FITTED" in desc.upper()
+                    and dims.count("x") < 2):
+                dims = f"{dims} x {hem}"
             records.append({
                 "sheet": ws.title,
                 "block": block,
-                "size_type": size_type_from_desc(desc) or cellv(rowvals, cols["size"]),
-                "dimensions": fmt_dims(cellv(rowvals, cols["size"])),
+                "item_type": item_type,
+                "size_type": size or cellv(rowvals, cols["size"]),
+                "dimensions": dims,
+                "cut_size": fmt_dims(cellv(rowvals, cols.get("cut"))),
+                "hem_depth": hem,
                 "gsm": re.sub(r"\s*GSM$", "", gsm, flags=re.I),
-                "weight": num(cellv(rowvals, cols["weight"])),
+                "weight": weight,
                 "case_pack": case,
                 "color": cellv(rowvals, cols["color"]),
                 "description": desc,
@@ -161,26 +216,46 @@ def write_specs(records, mapping_path, path="specs.csv"):
             if h and m:
                 mapping.append((h, m.upper()))
 
-    out, seen = [], set()
+    ALT_COLOR = re.compile(r"BONE|ECRU|NATURAL|IVORY|GREY|GRAY|KHAKI|TAN|LATTE", re.I)
+    grouped = OrderedDict()  # key -> {row, colors:set}
     for r in records:
         blk = r["block"].upper()
         for handle, match in mapping:
             if match in blk:
-                key = (handle, r["size_type"].upper(), r["gsm"])
-                if key in seen:  # White + Ecru rows collapse to one spec row
-                    continue
-                seen.add(key)
-                out.append({
+                key = (handle, r["item_type"].upper(), r["size_type"].upper(),
+                       r["gsm"], r["dimensions"].upper())
+                g = grouped.setdefault(key, {"row": {
                     "handle": handle,
+                    "item_type": r["item_type"],
                     "size": r["size_type"],
                     "gsm": r["gsm"],
                     "dimensions": r["dimensions"],
+                    "weight": r["weight"],
                     "case_pack": r["case_pack"],
-                })
+                }, "colors": set()})
+                if r["color"]:
+                    g["colors"].add(r["color"])
                 break
 
+    # star rows whose alt-color availability differs from the product norm:
+    # if only SOME rows of a handle come in the alt color, star those rows;
+    # if ALL rows do, no stars (the availability line covers it)
+    by_handle = {}
+    for key, g in grouped.items():
+        by_handle.setdefault(key[0], []).append(g)
+    out = []
+    for handle, groups in by_handle.items():
+        has_alt = [any(ALT_COLOR.search(c) for c in g["colors"]) for g in groups]
+        star_some = any(has_alt) and not all(has_alt)
+        for g, alt in zip(groups, has_alt):
+            row = dict(g["row"])
+            if star_some and alt:
+                row["size"] = "*" + row["size"]
+            out.append(row)
+
     with open(path, "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["handle", "size", "gsm", "dimensions", "case_pack"])
+        w = csv.DictWriter(f, fieldnames=["handle", "item_type", "size", "gsm",
+                                          "dimensions", "weight", "case_pack"])
         w.writeheader()
         w.writerows(out)
     print(f"Wrote {path} ({len(out)} rows for {len(mapping)} mapped handles)")

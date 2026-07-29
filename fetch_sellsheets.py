@@ -72,31 +72,38 @@ def fetch(url: str) -> requests.Response:
 
 
 def load_specs(path):
-    """specs.csv -> {(handle, SIZE, gsm_str): {dimensions, case_pack}} with
-    a size-only fallback key (handle, SIZE, '') when gsm is blank."""
-    specs = {}
+    """specs.csv -> {"lookup": {(handle, SIZE, gsm): {...}},
+                     "by_handle": {handle: [row, ...] in file order}}"""
+    specs = {"lookup": {}, "by_handle": {}}
     if not path or not os.path.exists(path):
         return specs
     with open(path, newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
             h = norm(row.get("handle", ""))
-            size = norm_size(row.get("size", ""))
+            size = norm(row.get("size", ""))
             gsm = norm(str(row.get("gsm", "")))
             if not h or not size:
                 continue
-            specs[(h, size, gsm)] = {
+            rec = {
+                "item_type": norm(row.get("item_type", "")),
+                "size": size,
+                "gsm": gsm,
                 "dimensions": norm(row.get("dimensions", "")),
+                "weight": norm(str(row.get("weight", ""))),
                 "case_pack": norm(str(row.get("case_pack", ""))),
             }
+            specs["lookup"][(h, norm_size(size), gsm)] = rec
+            specs["by_handle"].setdefault(h, []).append(rec)
     return specs
 
 
 def spec_lookup(specs, handle, size, gsm):
     size = norm_size(size)
     gsm = norm(str(gsm))
+    lk = specs.get("lookup", {})
     return (
-        specs.get((handle, size, gsm))
-        or specs.get((handle, size, ""))
+        lk.get((handle, size, gsm))
+        or lk.get((handle, size, ""))
         or {"dimensions": "[DIMS]", "case_pack": "[CASE]"}
     )
 
@@ -136,7 +143,31 @@ def parse_details_bullets(soup):
         t = text_of(li)
         if t:
             out.append(t)
-    return out
+    if len(out) >= 3:
+        return out
+    # sparse primary list (sheets-style pages put bullets under per-item
+    # subheadings): walk from Details to the next major section, prefixing
+    # each bullet with its subheading
+    out2, sub = [], ""
+    STOP = {"MANUFACTURING", "CARE INSTRUCTIONS", "RESOURCES"}
+    start = None
+    for el in soup.find_all(True):
+        if text_of(el).upper().strip("#: ") == "DETAILS":
+            start = el
+            break
+    if not start:
+        return out
+    for el in start.find_all_next(True):
+        t = text_of(el).upper().strip("#: ")
+        if t in STOP:
+            break
+        if el.name in ("h3", "h4", "h5", "strong") and text_of(el) and len(text_of(el)) < 40:
+            sub = text_of(el)
+        elif el.name == "li":
+            txt = text_of(el)
+            if txt:
+                out2.append(f"{sub}: {txt}" if sub else txt)
+    return out2 or out
 
 
 def parse_size_sections(soup):
@@ -254,6 +285,19 @@ def scrape_product(url, specs, img_dir, debug_dir=None):
     bullets = parse_details_bullets(soup)
     size_sections = parse_size_sections(soup)
     rows = build_spec_rows(handle, size_sections, specs)
+    if not rows:
+        # pages with no per-size sections (blankets, sheets, pillows...):
+        # build the whole table from specs.csv rows for this handle, in file
+        # order. Rows drop empty cells (sheets tables are Size|Dims|Case);
+        # when item_type changes, a header line is inserted.
+        rows, last_type = [], None
+        for r in specs.get("by_handle", {}).get(handle, []):
+            if r["item_type"] and r["item_type"] != last_type:
+                rows.append([r["item_type"]])
+                last_type = r["item_type"]
+            cells = [r["size"], r["dimensions"], r["gsm"], r["weight"],
+                     r["case_pack"]]
+            rows.append([c for c in cells if c])
     colors = parse_availability(soup)
 
     # download hero + logo
@@ -271,7 +315,7 @@ def scrape_product(url, specs, img_dir, debug_dir=None):
     if not bullets:
         missing.append("details bullets")
     if not rows:
-        missing.append("spec rows")
+        missing.append("spec rows (not on page AND no specs.csv rows for this handle)")
     if missing:
         print(f"  ! {handle}: could not parse {', '.join(missing)} — "
               f"check debug HTML and tell Claude.")
