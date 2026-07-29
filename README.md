@@ -29,10 +29,10 @@ Product URLs (urls.txt) ──────────────────�
   "Add Python to PATH" during install, then use `python` instead of `python3`
   in the commands below.
 
-### 2. Install the two required packages
+### 2. Install the required packages
 
 ```
-pip3 install requests beautifulsoup4
+pip3 install requests beautifulsoup4 openpyxl
 ```
 
 ### 3. Get the price list
