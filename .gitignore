@@ -1,0 +1,19 @@
+# internal source data — never commit
+*Price List*.xlsx
+*.xlsx
+*.zip
+specs_master.csv
+blocks.txt
+
+# run outputs
+output*/
+*_run/
+images/
+pages/
+manifest.json
+debug/
+urls.txt
+
+# OS noise
+.DS_Store
+Thumbs.db
