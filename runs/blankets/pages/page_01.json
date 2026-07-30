@@ -1,0 +1,158 @@
+{
+  "collection": "Blankets",
+  "page": 1,
+  "page_count": 1,
+  "template": "x3",
+  "products": [
+    {
+      "handle": "martex-sovereign-blanket",
+      "url": "https://www.westpointhospitality.com/products/martex-sovereign-blanket",
+      "name": "Martex® Sovereign Blanket",
+      "logo": "martex-sovereign-blanket_logo.svg",
+      "hero": "martex-sovereign-blanket_hero.jpg",
+      "extra_images": [
+        "martex-sovereign-blanket_2.jpg"
+      ],
+      "bullets": [
+        "280 GSM for All Season Use",
+        "100% Cotton",
+        "Tight Diagonal Weave",
+        "Year-Round Comfort",
+        "Available in White and Natural",
+        "Lab Tested for Hospitality Use",
+        "OEKO-TEX Standard 100",
+        "TAA Compliant for GSA® Contracts"
+      ],
+      "spec_rows": [
+        [
+          "Twin Blanket",
+          "66\" x 90\"",
+          "2.7",
+          "4"
+        ],
+        [
+          "Full Blanket",
+          "80\" x 90\"",
+          "3.2",
+          "4"
+        ],
+        [
+          "Queen Blanket",
+          "90\" x 90\"",
+          "3.6",
+          "2"
+        ],
+        [
+          "King Blanket",
+          "108\" x 90\"",
+          "4.4",
+          "2"
+        ]
+      ],
+      "colors_line": "Available in White and Natural",
+      "flagged": false
+    },
+    {
+      "handle": "grand-patrician-suites-blanket",
+      "url": "https://www.westpointhospitality.com/products/grand-patrician-suites-blanket",
+      "name": "Grand Patrician Suites® Blanket",
+      "logo": "grand-patrician-suites-blanket_logo.svg",
+      "hero": "grand-patrician-suites-blanket_hero.jpg",
+      "extra_images": [
+        "grand-patrician-suites-blanket_2.jpg",
+        "grand-patrician-suites-blanket_3.jpg"
+      ],
+      "bullets": [
+        "290 GSM",
+        "100% Cotton",
+        "Distinct Herringbone Design",
+        "Diagonal Weave",
+        "Available in White and Natural",
+        "Lab Tested for Hospitality Use",
+        "OEKO-TEX Standard 100"
+      ],
+      "spec_rows": [
+        [
+          "Twin Blanket",
+          "66\" x 90\"",
+          "2.8",
+          "4"
+        ],
+        [
+          "Full Blanket",
+          "80\" x 90\"",
+          "3.3",
+          "4"
+        ],
+        [
+          "Queen Blanket",
+          "90\" x 90\"",
+          "3.8",
+          "2"
+        ],
+        [
+          "King Blanket",
+          "108\" x 90\"",
+          "4.5",
+          "2"
+        ]
+      ],
+      "colors_line": "Available in White and Natural",
+      "flagged": false
+    },
+    {
+      "handle": "five-star-hotel-collection-blanket",
+      "url": "https://www.westpointhospitality.com/products/five-star-hotel-collection-blanket",
+      "name": "Five Star Hotel CollectionTM Blanket",
+      "logo": "five-star-hotel-collection-blanket_logo.svg",
+      "hero": "five-star-hotel-collection-blanket_hero.jpg",
+      "extra_images": [
+        "five-star-hotel-collection-blanket_2.jpg",
+        "five-star-hotel-collection-blanket_3.jpg",
+        "five-star-hotel-collection-blanket_4.jpg",
+        "five-star-hotel-collection-blanket_5.jpg"
+      ],
+      "bullets": [
+        "Ultra Soft, 100% Ring Spun Cotton",
+        "Luxurious Feel and Design",
+        "Beautiful Basketweave Pattern",
+        "1.6” Top and Bottom Hem for Tailored Finish",
+        "Sides are 1” Double Needle Lockstitch for Added Durability",
+        "Bar Tacking at Each Corner",
+        "Prewashed and Preshrunk for Longevity",
+        "350 GSM Provides Substantial Weight for All Seasons",
+        "Available in White",
+        "Lab Tested for Hospitality Use",
+        "OEKO-TEX® Standard 100 Certified"
+      ],
+      "spec_rows": [
+        [
+          "Twin Blanket",
+          "66\" x 90\"",
+          "3.3",
+          "4"
+        ],
+        [
+          "Full Blanket",
+          "80\" x 90\"",
+          "4.1",
+          "4"
+        ],
+        [
+          "Queen Blanket",
+          "90\" x 90\"",
+          "4.5",
+          "2"
+        ],
+        [
+          "King Blanket",
+          "108\" x 90\"",
+          "5.4",
+          "2"
+        ]
+      ],
+      "colors_line": "Available in White",
+      "flagged": false
+    }
+  ]
+}

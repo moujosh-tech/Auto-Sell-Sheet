@@ -5,14 +5,16 @@
 specs_master.csv
 blocks.txt
 
-# run outputs
+# ad-hoc/test fetch outputs (committed runs go in runs/ instead)
 output*/
 *_run/
-images/
-pages/
-manifest.json
+test_run/
 debug/
 urls.txt
+
+# generated deliverables & Illustrator lock files
+Completed Sell Sheet/
+~ai-*.tmp
 
 # OS noise
 .DS_Store

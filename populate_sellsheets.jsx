@@ -141,9 +141,8 @@
   }
 
   function bulletsBlock(bullets) {
-    var lines = [];
-    for (var i = 0; i < bullets.length; i++) lines.push("\u2022  " + bullets[i]);
-    return lines.join("\r");
+    // plain lines — the template's paragraph style supplies the bullets
+    return bullets.join("\r");
   }
 
   function specsBlock(rows) {
