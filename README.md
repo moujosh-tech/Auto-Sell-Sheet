@@ -1,152 +1,72 @@
 # Sell Sheet Automation
 
-Generates WestPoint Hospitality sell sheets automatically. Instead of copying
-product info from the website and price list by hand, this pipeline pulls
-everything into editable Illustrator files — live text, placed images, correct
-layout — ready for final design touches.
+This repo generates WestPoint Hospitality sell sheets as editable Illustrator
+files — live text, placed images, correct layout — so nobody retypes product
+info from the website or price list.
 
-**Pipeline at a glance:**
+**If you just need to produce sell sheets, you only need Illustrator and
+GitHub Desktop.** The data fetching is already done and lives in this repo.
 
-```
-Master Price List ──► extract_specs.py ──► specs.csv ─┐
-                                                      ├─► fetch_sellsheets.py ──► page JSONs + images
-Product URLs (urls.txt) ──────────────────────────────┘              │
-                                                                     ▼
-                                             populate_sellsheets.jsx (Illustrator)
-                                                                     │
-                                                                     ▼
-                                                    Towels_page_01.ai, _02.ai, ...
-```
+## Producing a sell sheet (the normal workflow)
 
----
+1. **Get the latest files.** Open GitHub Desktop → this repo → **Fetch
+   origin / Pull**. (First time: File → Clone Repository → pick
+   `Auto-Sell-Sheet`.)
 
-## One-time setup
+2. **Find your collection** in the `runs/` folder — e.g. `runs/blankets`,
+   `runs/towels`. Each contains the prepared data (`pages/`) and images for
+   that collection. If the collection you need isn't there, ask Josh to add
+   it (see MAINTAINER.md).
 
-### 1. Install Python (if you don't have it)
+3. **Run the script in Illustrator:**
+   File → Scripts → Other Script… → `populate_sellsheets.jsx`
 
-- **Mac:** Python 3 is preinstalled. Check with `python3 --version` in Terminal.
-- **PC:** Install from [python.org](https://www.python.org/downloads/) — check
-  "Add Python to PATH" during install, then use `python` instead of `python3`
-  in the commands below.
+   It asks for three folders, in this order:
+   1. the collection's run folder (e.g. `runs/blankets`)
+   2. the `templates/` folder in this repo
+   3. wherever you want the generated .ai files saved (NOT inside the repo)
 
-### 2. Install the required packages
+   It generates one .ai per page (`Blankets_page_01.ai`, …) and finishes with
+   a summary. If the summary lists "missing frames," tell Josh — that means a
+   template got renamed.
 
-```
-pip3 install requests beautifulsoup4 openpyxl
-```
+4. **Finesse in Illustrator:**
+   - Delete feature bullets or spec-table rows that shouldn't appear (the
+     script brings in everything available; curating down beats retyping)
+   - Fill any `[DIMS]` / `[CASE]` placeholders and report them to Josh so
+     they're automatic next time
+   - Swap the main photo if a better one exists — alternates are in the run's
+     `images/` folder
+   - Nudge the table stripe artwork if a table runs longer or shorter than
+     the template
 
-### 3. Get the price list
+That's the whole job. Everything below and in MAINTAINER.md is setup and
+data-plumbing that's already been done.
 
-Grab the current Master Price List xlsx from its usual internal location and
-copy it into this repo folder (safe — the .gitignore prevents it from being
-committed). **Do not force-add it to git.**
+## Rules
 
-### 4. Generate specs.csv
+- **Never commit the Master Price List** (or any .xlsx/.zip) to this repo.
+  The .gitignore blocks it, but don't fight the .gitignore. If GitHub Desktop
+  ever shows a price list file as a change to commit, stop and tell Josh.
+- Don't rename layers/objects in the template files — the script finds frames
+  by name.
+- Save your generated .ai files outside the repo folder (they're deliverables,
+  not shared tooling).
 
-The website has no dimensions or case-pack data, so those come from the price
-list. Run this from the repo folder, using the file's real full name in
-quotes:
+## Editing the templates (designers)
 
-```
-python3 extract_specs.py "2026 WPH ABC Master Price List.xlsx"
-```
+The design is fully editable EXCEPT the placeholder frame names. Per product
+slot N (1 = top):
 
-(Windows: use `python` instead of `python3`. If the xlsx lives elsewhere,
-drag the file into the terminal window to paste its full path instead.)
-
-First run writes `blocks.txt` (every product block found) and
-`specs_master.csv`. Check `mapping.csv` — if the products you need aren't
-mapped yet, add a line per product: the Shopify handle (the last part of the
-product URL) and any unique substring of the block name from blocks.txt:
-
-```
-handle,block_match
-martex-cam-towel-collection,Martex Cam Towel
-```
-
-Run the command again — it now also writes `specs.csv`. Commit updated
-`mapping.csv` and `specs.csv` so coworkers benefit; when a new price list
-drops, re-run and re-commit.
-
----
-
-## Making a sell sheet
-
-### 1. Build urls.txt
-
-One product URL per line, in the order they should appear (good → better →
-best). Add ` *` after any product that needs the roomier 2-page layout:
-
-```
-https://www.westpointhospitality.com/products/martex-cam-towel-collection
-https://www.westpointhospitality.com/products/martex-simplicity-towel-collection *
-```
-
-How pages are decided: pages fill 3 products at a time in strict order. Any
-page containing a `*` product holds max 2 and uses the 2-up template. Pages
-with fewer than 3 products (including a lone last product) also use the 2-up
-template.
-
-### 2. Fetch
-
-```
-python3 fetch_sellsheets.py urls.txt --title "Towels" --out ./towels_run
-```
-
-This scrapes each product page (bullets, per-size weight/GSM, colors line,
-brand logo, photos), merges dims/case pack from specs.csv, and writes
-`towels_run/pages/page_01.json...` plus all images. Anything missing from
-specs.csv shows up as `[DIMS]` / `[CASE]` so it can't silently drop out.
-
-If a product fails to parse, re-run with `--debug` and send the saved HTML
-from `towels_run/debug/` to whoever maintains the scraper.
-
-### 3. Populate in Illustrator
-
-File → Scripts → Other Script… → `populate_sellsheets.jsx`
-
-Three folder prompts: (1) the run folder from step 2, (2) the `templates/`
-folder in this repo, (3) where to save the output. It generates one .ai per
-page and reports any frames it couldn't find.
-
-### 4. Finesse
-
-- Delete bullets / spec rows that shouldn't appear on the sheet (the script
-  brings everything; curating down is faster than typing)
-- Fill any `[DIMS]` / `[CASE]` placeholders (then add those rows to
-  specs.csv/mapping.csv so next time they're automatic)
-- Swap the hero image if needed — alternates are in the run's `images/` folder
-- Nudge table stripe artwork if a table runs longer/shorter than the template
-
----
-
-## Template maintenance
-
-The templates in `templates/` have named placeholder frames the script fills.
-If you edit the design, keep the names intact (Layers panel). Per slot
-N = 1 (top) to 3 (bottom):
-
-| Name | Type | Filled with |
+| Frame | Type | Script fills it with |
 |---|---|---|
-| `Logo_N` | rectangle | Brand logo SVG (fitted; rectangle auto-hides) |
-| `Name_N` | text | Product title (fallback when no logo) |
+| `Logo_N` | rectangle | Brand logo (vector, fitted; rectangle auto-hides) |
+| `Name_N` | text | Product title (only used when no logo exists) |
 | `Hero_N` | rectangle | Product photo (cover-fit; rectangle auto-hides) |
-| `Copy_N` | text area | Feature bullets |
-| `Specs_N` | text area | Table rows, TAB-separated (5 tab stops = 5 columns) |
-| `Colors_N` | text | "Available in White and *Ecru" |
-| `PageTitle` | text | Collection title (optional) |
-| `PageNum` | text | "1 of 3" (optional) |
+| `Copy_N` | text area | Feature bullets (template's paragraph style supplies the bullet characters) |
+| `Specs_N` | text area | Spec table rows — single text area with tab stops, NOT Area Type columns, NOT separate frames per cell |
+| `Colors_N` | text | Availability line ("Available in White and *Ecru") |
+| `PageTitle` / `PageNum` | text | Collection title / page number (optional) |
 
-The spec table body must stay ONE text area with tab stops — not separate
-frames per cell. The styled header row stays as static artwork.
-
----
-
-## What never goes in this repo
-
-- The Master Price List xlsx (or any zip of it)
-- `specs_master.csv` and `blocks.txt` (derived from it)
-- Run output folders and downloaded images
-
-The .gitignore handles these — if git ever shows one of them as a new file to
-commit, stop and don't commit it.
+Templates must have exactly ONE artboard. Keep the spec-table header row and
+stripe artwork as static art — the script writes only the data rows.

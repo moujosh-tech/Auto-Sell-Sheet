@@ -1,0 +1,17 @@
+# internal source data — never commit
+*Price List*.xlsx
+*.xlsx
+*.zip
+specs_master.csv
+blocks.txt
+
+# ad-hoc/test fetch outputs (committed runs go in runs/ instead)
+output*/
+*_run/
+test_run/
+debug/
+urls.txt
+
+# OS noise
+.DS_Store
+Thumbs.db
