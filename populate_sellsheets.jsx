@@ -38,6 +38,40 @@
     return eval("(" + s + ")"); // ExtendScript has no JSON.parse
   }
 
+  function allLayers(container, out) {
+    out = out || [];
+    for (var i = 0; i < container.layers.length; i++) {
+      out.push(container.layers[i]);
+      allLayers(container.layers[i], out);
+    }
+    return out;
+  }
+
+  function unlockAll(doc) {
+    // unlock & show every layer so frames can be edited and items placed;
+    // returns saved states for restoreLayers()
+    var states = [];
+    var layers = allLayers(doc);
+    for (var i = 0; i < layers.length; i++) {
+      states.push({ layer: layers[i], locked: layers[i].locked,
+                    visible: layers[i].visible });
+      layers[i].locked = false;
+      layers[i].visible = true;
+    }
+    // make sure the active layer is a real, editable layer
+    doc.activeLayer = doc.layers[0];
+    return states;
+  }
+
+  function restoreLayers(states) {
+    for (var i = 0; i < states.length; i++) {
+      try {
+        states[i].layer.locked = states[i].locked;
+        states[i].layer.visible = states[i].visible;
+      } catch (e) {}
+    }
+  }
+
   function findItem(doc, name) {
     // search all page items by name, all layers, recursively
     try {
@@ -52,6 +86,7 @@
   function setText(doc, name, contents) {
     var it = findItem(doc, name);
     if (it && it.typename === "TextFrame") {
+      try { it.locked = false; } catch (e) {}
       it.contents = contents;
       return true;
     }
@@ -67,14 +102,26 @@
   function placeInto(doc, name, imgFile, fitMode) {
     // Places imgFile fitted inside the frame named `name`, centered.
     // fitMode "contain" (default) fits inside; "cover" fills & overflows.
+    // SVGs are imported as vector groups (placedItems cannot link SVG).
     var frame = findItem(doc, name);
     if (!frame || !imgFile.exists) return false;
+    try { frame.locked = false; } catch (e) {}
     var fb = bounds(frame);
 
-    var placed = doc.placedItems.add();
-    placed.file = imgFile;
-    var pb = bounds(placed);
+    var placed;
+    try {
+      if (/\.svg$/i.test(imgFile.name)) {
+        placed = doc.groupItems.createFromFile(imgFile);
+      } else {
+        placed = doc.placedItems.add();
+        placed.file = imgFile;
+      }
+    } catch (e) {
+      try { if (placed) placed.remove(); } catch (e2) {}
+      return false;
+    }
 
+    var pb = bounds(placed);
     var scale = (fitMode === "cover")
       ? Math.max(fb.w / pb.w, fb.h / pb.h)
       : Math.min(fb.w / pb.w, fb.h / pb.h);
@@ -141,6 +188,7 @@
   for (var p = 0; p < pageFiles.length; p++) {
     var data = readJSON(pageFiles[p]);
     var doc = app.open(templates[data.template]);
+    var layerStates = unlockAll(doc);
 
     setText(doc, "PageTitle", data.collection || "");
     setText(doc, "PageNum", data.page + " of " + data.page_count);
@@ -186,6 +234,8 @@
       var ef = findItem(doc, "Hero_" + e); if (ef) ef.hidden = true;
       var el = findItem(doc, "Logo_" + e); if (el) el.hidden = true;
     }
+
+    restoreLayers(layerStates);
 
     var outName = sanitize(data.collection) + "_page_" +
       (data.page < 10 ? "0" : "") + data.page + ".ai";
