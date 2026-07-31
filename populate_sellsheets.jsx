@@ -166,7 +166,13 @@
     }
     for (var i = 0; i < names.length; i++) {
       var it = findItem(doc, names[i]);
-      if (it && it.typename === "TextFrame") return it;
+      if (it) {
+        if (it.typename === "TextFrame") return it;
+        // named object exists but is not type — surface it loudly
+        if (typeof $.global.__specTypeWarnings === "undefined") $.global.__specTypeWarnings = [];
+        $.global.__specTypeWarnings.push(names[i] + " is a " + it.typename +
+          " — must be a TEXT frame (use the Type tool)");
+      }
     }
     return null;
   }
@@ -318,6 +324,15 @@
     doc.close(SaveOptions.DONOTSAVECHANGES);
   }
 
+  if (typeof $.global.__specTypeWarnings !== "undefined" && $.global.__specTypeWarnings.length) {
+    // dedupe
+    var seenW = {}, tw = [];
+    for (var w = 0; w < $.global.__specTypeWarnings.length; w++) {
+      var msg = $.global.__specTypeWarnings[w];
+      if (!seenW[msg]) { seenW[msg] = true; tw.push(msg); }
+    }
+    report = tw.concat(report);
+  }
   alert("Done. " + pageFiles.length + " page(s) generated." +
     (report.length ? "\n\nWarnings:\n" + report.join("\n") : ""));
 
