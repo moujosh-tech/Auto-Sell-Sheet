@@ -85,6 +85,7 @@ def load_specs(path):
             if not h or not size:
                 continue
             rec = {
+                "weight_unit": norm(row.get("weight_unit", "")),
                 "item_type": norm(row.get("item_type", "")),
                 "size": size,
                 "gsm": gsm,
@@ -309,27 +310,42 @@ def scrape_product(url, specs, img_dir, debug_dir=None):
     desc = ""
     if pj.get("body_html"):
         dsoup = BeautifulSoup(pj["body_html"], "html.parser")
-        paras = [norm(p.get_text(" ", strip=True))
-                 for p in dsoup.find_all(["p", "div"])] or [norm(dsoup.get_text(" ", strip=True))]
-        desc = "\n\n".join(p for p in paras if p)
+        paras = [norm(p.get_text(" ", strip=True)) for p in dsoup.find_all("p")]
+        paras = [p for p in paras if p]
+        if not paras:
+            paras = [ln for ln in
+                     (norm(x) for x in dsoup.get_text("\n", strip=True).split("\n"))
+                     if ln]
+        seen, uniq = set(), []
+        for p in paras:
+            if p not in seen:
+                seen.add(p)
+                uniq.append(p)
+        desc = "\n\n".join(uniq)
     images = [im["src"] for im in pj.get("images", [])]
     logo = parse_brand_logo(soup)
     bullets = parse_details_bullets(soup)
-    size_sections = parse_size_sections(soup)
-    raw = build_spec_rows(handle, size_sections, specs)
-    weight_header = "Weight lbs/dz"
-    if not raw:
-        # pages with no per-size sections (blankets, sheets, pillows...):
-        # build the whole table from specs.csv rows for this handle, in file
-        # order; item-type changes insert 1-cell group-header rows
-        weight_header = "Weight"
+    # PRICE LIST FIRST: mapped products build their table from specs.csv
+    # (authoritative); page parsing is only the fallback for unmapped ones.
+    raw, weight_header = [], "Weight"
+    csv_rows = specs.get("by_handle", {}).get(handle, [])
+    if csv_rows:
+        units = {r.get("weight_unit", "") for r in csv_rows if r.get("weight")}
+        if "lbs/dz" in units:
+            weight_header = "Weight lbs/dz"
+        elif "oz" in units:
+            weight_header = "Weight (oz)"
         last_type = None
-        for r in specs.get("by_handle", {}).get(handle, []):
+        for r in csv_rows:
             if r["item_type"] and r["item_type"] != last_type:
                 raw.append([r["item_type"]])
                 last_type = r["item_type"]
             raw.append([r["size"], r["dimensions"], r["gsm"], r["weight"],
                         r["case_pack"]])
+    else:
+        size_sections = parse_size_sections(soup)
+        raw = build_spec_rows(handle, size_sections, specs)
+        weight_header = "Weight lbs/dz"
     spec_table = build_spec_table(raw, weight_header)
     # legacy tabbed-frame rows: drop empty cells
     rows = [r if len(r) == 1 else [c for c in r if str(c).strip()]
@@ -351,7 +367,7 @@ def scrape_product(url, specs, img_dir, debug_dir=None):
     if not bullets:
         missing.append("details bullets")
     if not rows:
-        missing.append("spec rows (not on page AND no specs.csv rows for this handle)")
+        missing.append("spec rows (no specs.csv rows for this handle AND none parsed from page)")
     if missing:
         print(f"  ! {handle}: could not parse {', '.join(missing)} — "
               f"check debug HTML and tell Claude.")

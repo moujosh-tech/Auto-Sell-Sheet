@@ -92,6 +92,9 @@ def find_header(ws):
                 "cut": first(lambda k: k.startswith("CUT SIZE")),
                 "hem": first(lambda k: k.startswith("HEM")),
                 "weight": first(lambda k: k == "LBS/DZ" or k.startswith("WEIGHT")),
+                "weight_unit": ("lbs/dz" if "LBS/DZ" in names
+                                else "oz" if any(k.startswith("WEIGHT (OZ") for k in names)
+                                else ""),
                 "gsm": names.get("GSM"),
                 "desc": names.get("DESCRIPTION"),
                 "color": first(lambda k: k.startswith("COLOR")),
@@ -182,6 +185,7 @@ def extract(path):
                 "hem_depth": hem,
                 "gsm": re.sub(r"\s*GSM$", "", gsm, flags=re.I),
                 "weight": weight,
+                "weight_unit": cols.get("weight_unit", "") if weight else "",
                 "case_pack": case,
                 "color": cellv(rowvals, cols["color"]),
                 "description": desc,
@@ -231,6 +235,7 @@ def write_specs(records, mapping_path, path="specs.csv"):
                     "gsm": r["gsm"],
                     "dimensions": r["dimensions"],
                     "weight": r["weight"],
+                    "weight_unit": r.get("weight_unit", ""),
                     "case_pack": r["case_pack"],
                 }, "colors": set()})
                 if r["color"]:
@@ -255,7 +260,8 @@ def write_specs(records, mapping_path, path="specs.csv"):
 
     with open(path, "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=["handle", "item_type", "size", "gsm",
-                                          "dimensions", "weight", "case_pack"])
+                                          "dimensions", "weight", "weight_unit",
+                                          "case_pack"])
         w.writeheader()
         w.writerows(out)
     print(f"Wrote {path} ({len(out)} rows for {len(mapping)} mapped handles)")
