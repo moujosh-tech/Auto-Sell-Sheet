@@ -1,0 +1,107 @@
+{
+  "collection": "luxe",
+  "page": 1,
+  "page_count": 1,
+  "template": "x1",
+  "products": [
+    {
+      "handle": "martex-atelier-luxe-blanket",
+      "url": "https://www.westpointhospitality.com/products/martex-atelier-luxe-blanket",
+      "name": "Martex® Atelier Luxe Blanket",
+      "logo": "martex-atelier-luxe-blanket_logo.svg",
+      "hero": "martex-atelier-luxe-blanket_hero.jpg",
+      "extra_images": [
+        "martex-atelier-luxe-blanket_2.jpg",
+        "martex-atelier-luxe-blanket_3.jpg",
+        "martex-atelier-luxe-blanket_4.jpg",
+        "martex-atelier-luxe-blanket_5.jpg",
+        "martex-atelier-luxe-blanket_6.jpg",
+        "martex-atelier-luxe-blanket_7.jpg",
+        "martex-atelier-luxe-blanket_8.jpg"
+      ],
+      "description": "Crafted for ultimate luxury, the Martex ® Atelier Luxe Blanket is designed to offer both comfort and style. Made from a blend of 70% cotton and 30% TENCELTM Modal fibers , this blanket provides a silky-smooth feel that is gentle on the skin, while also offering temperature-regulating properties . TENCELTM is known for its breathability and moisture-wicking abilities , keeping guests cool in warm weather and cozy during chilly evenings.\n\nCrafted for ultimate luxury, the Martex ® Atelier Luxe Blanket is designed to offer both comfort and style. Made from a blend of 70% cotton and 30% TENCELTM Modal fibers , this blanket provides a silky-smooth feel that is gentle on the skin, while also offering temperature-regulating properties . TENCELTM is known for its breathability and moisture-wicking abilities , keeping guests cool in warm weather and cozy during chilly evenings.\n\nIn addition to its luxurious softness, TENCELTM is an eco-friendly option , offering durability that resists pilling and shrinkage over time. Weighing in at 280 GSM , the blanket has a refined herringbone weave design , adding a touch of elegance to any guest space.\n\nIn addition to its luxurious softness, TENCELTM is an eco-friendly option , offering durability that resists pilling and shrinkage over time. Weighing in at 280 GSM , the blanket has a refined herringbone weave design , adding a touch of elegance to any guest space.\n\nWith the Martex ® Atelier Luxe Blanket , elevate your guest experience with one simple change. It’s the perfect combination of luxury, durability, and eco-conscious design, ensuring your guests enjoy the best in comfort and style.\n\nWith the Martex ® Atelier Luxe Blanket , elevate your guest experience with one simple change. It’s the perfect combination of luxury, durability, and eco-conscious design, ensuring your guests enjoy the best in comfort and style.\n\nTrade Agreements Act (TAA) compliant making it eligible for sale to the U.S. government.\n\nTrade Agreements Act (TAA) compliant making it eligible for sale to the U.S. government.",
+      "bullets": [
+        "70% Cotton / 30% TENCELTM Modal",
+        "280 GSM",
+        "Lab Tested for Hospitality Use",
+        "Luxury Softness",
+        "Temperature Regulating Fibers",
+        "Superior Performance",
+        "Long-Lasting Comfort",
+        "Pill-Resistant",
+        "Shrink Resistant",
+        "Moisture Wicking",
+        "All-Season Satisfaction",
+        "Eco-Friendly",
+        "Gentle on Skin",
+        "Herringbone Weave Design",
+        "Available in White and Natural",
+        "TrueFitTM Indicator Colors for Size Identification",
+        "TAA Compliant for GSA® Contracts"
+      ],
+      "spec_rows": [
+        [
+          "Twin Blanket",
+          "66\" x 90\"",
+          "280",
+          "4"
+        ],
+        [
+          "Full Blanket",
+          "80\" x 90\"",
+          "280",
+          "4"
+        ],
+        [
+          "Queen Blanket",
+          "90\" x 90\"",
+          "280",
+          "2"
+        ],
+        [
+          "King Blanket",
+          "108\" x 90\"",
+          "280",
+          "2"
+        ]
+      ],
+      "spec_table": {
+        "headers": [
+          "Size",
+          "Dimensions",
+          "GSM",
+          "Case Pack"
+        ],
+        "rows": [
+          [
+            "Twin Blanket",
+            "66\" x 90\"",
+            "280",
+            "4"
+          ],
+          [
+            "Full Blanket",
+            "80\" x 90\"",
+            "280",
+            "4"
+          ],
+          [
+            "Queen Blanket",
+            "90\" x 90\"",
+            "280",
+            "2"
+          ],
+          [
+            "King Blanket",
+            "108\" x 90\"",
+            "280",
+            "2"
+          ]
+        ]
+      },
+      "colors_line": "Available in White and Natural",
+      "flagged": false,
+      "solo": false
+    }
+  ]
+}

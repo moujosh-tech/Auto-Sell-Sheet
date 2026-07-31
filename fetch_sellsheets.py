@@ -220,6 +220,31 @@ def parse_brand_logo(soup):
     return ""
 
 
+SPEC_FIELDS = [("Size", 0), ("Dimensions", 1), ("GSM", 2),
+               ("Weight lbs/dz", 3), ("Case Pack", 4)]
+
+
+def build_spec_table(raw_rows, weight_header="Weight lbs/dz"):
+    """raw_rows: list of 5-cell rows [size, dims, gsm, weight, case] and
+    1-cell group-header rows. Returns {"headers": [...], "rows": [...]}
+    keeping only columns that contain data; group rows stay 1-cell."""
+    data_rows = [r for r in raw_rows if len(r) > 1]
+    keep = []
+    for name, idx in SPEC_FIELDS:
+        if any(len(r) > idx and str(r[idx]).strip() for r in data_rows):
+            if name == "Weight lbs/dz":
+                name = weight_header
+            keep.append((name, idx))
+    headers = [n for n, _ in keep]
+    rows = []
+    for r in raw_rows:
+        if len(r) == 1:
+            rows.append(r)
+        else:
+            rows.append([str(r[i]) if i < len(r) else "" for _, i in keep])
+    return {"headers": headers, "rows": rows}
+
+
 def build_spec_rows(handle, size_sections, specs):
     """Turn per-size bullet sections into table rows:
     [size, dimensions, gsm, weight, case_pack]. One row per weight/GSM bullet.
@@ -280,24 +305,35 @@ def scrape_product(url, specs, img_dir, debug_dir=None):
         print(f"  ! .json fetch failed for {handle}: {e}")
 
     title = norm(pj.get("title") or (soup.find("h1") and text_of(soup.find("h1"))) or handle)
+    # description: body_html paragraphs -> plain text, blank line between paras
+    desc = ""
+    if pj.get("body_html"):
+        dsoup = BeautifulSoup(pj["body_html"], "html.parser")
+        paras = [norm(p.get_text(" ", strip=True))
+                 for p in dsoup.find_all(["p", "div"])] or [norm(dsoup.get_text(" ", strip=True))]
+        desc = "\n\n".join(p for p in paras if p)
     images = [im["src"] for im in pj.get("images", [])]
     logo = parse_brand_logo(soup)
     bullets = parse_details_bullets(soup)
     size_sections = parse_size_sections(soup)
-    rows = build_spec_rows(handle, size_sections, specs)
-    if not rows:
+    raw = build_spec_rows(handle, size_sections, specs)
+    weight_header = "Weight lbs/dz"
+    if not raw:
         # pages with no per-size sections (blankets, sheets, pillows...):
         # build the whole table from specs.csv rows for this handle, in file
-        # order. Rows drop empty cells (sheets tables are Size|Dims|Case);
-        # when item_type changes, a header line is inserted.
-        rows, last_type = [], None
+        # order; item-type changes insert 1-cell group-header rows
+        weight_header = "Weight"
+        last_type = None
         for r in specs.get("by_handle", {}).get(handle, []):
             if r["item_type"] and r["item_type"] != last_type:
-                rows.append([r["item_type"]])
+                raw.append([r["item_type"]])
                 last_type = r["item_type"]
-            cells = [r["size"], r["dimensions"], r["gsm"], r["weight"],
-                     r["case_pack"]]
-            rows.append([c for c in cells if c])
+            raw.append([r["size"], r["dimensions"], r["gsm"], r["weight"],
+                        r["case_pack"]])
+    spec_table = build_spec_table(raw, weight_header)
+    # legacy tabbed-frame rows: drop empty cells
+    rows = [r if len(r) == 1 else [c for c in r if str(c).strip()]
+            for r in raw]
     colors = parse_availability(soup)
 
     # download hero + logo
@@ -327,8 +363,10 @@ def scrape_product(url, specs, img_dir, debug_dir=None):
         "logo": os.path.basename(logo_path) if logo_path else "",
         "hero": os.path.basename(hero_path) if hero_path else "",
         "extra_images": [os.path.basename(p) for p in extra],
+        "description": desc,
         "bullets": bullets,
         "spec_rows": rows,
+        "spec_table": spec_table,
         "colors_line": colors,
     }
 
@@ -347,12 +385,15 @@ def download(url, dest_no_ext):
 
 
 def paginate(products):
-    """Strict order. Capacity 3 per page, or 2 if any product on the page is
-    flagged. Page template: x3 only when the page holds exactly 3 products,
-    otherwise x2."""
+    """Strict order. Page capacity: 3 normally, 2 if any product on the page
+    is flagged '*', 1 if flagged '**'. Template matches the product count:
+    x3 / x2 / x1 (x1 falls back to x2 in Illustrator if the template is
+    missing)."""
     pages, current = [], []
 
     def cap(items):
+        if any(p.get("solo") for p in items):
+            return 1
         return 2 if any(p["flagged"] for p in items) else 3
 
     for p in products:
@@ -364,7 +405,7 @@ def paginate(products):
         pages.append(current)
 
     return [{
-        "template": "x3" if len(pg) == 3 else "x2",
+        "template": "x" + str(min(len(pg), 3)),
         "products": pg,
     } for pg in pages]
 
@@ -384,9 +425,10 @@ def main():
             line = line.strip()
             if not line or line.startswith("#"):
                 continue
+            solo = line.rstrip().endswith("**")
             flagged = line.rstrip().endswith("*")
             url = line.rstrip("* \t")
-            entries.append((url, flagged))
+            entries.append((url, flagged, solo))
 
     os.makedirs(args.out, exist_ok=True)
     img_dir = os.path.join(args.out, "images")
@@ -403,10 +445,12 @@ def main():
               "[DIMS]/[CASE] placeholders.")
 
     products = []
-    for url, flagged in entries:
-        print(f"Fetching {url}" + (" [2-up flag]" if flagged else ""))
+    for url, flagged, solo in entries:
+        tag = " [solo flag]" if solo else (" [2-up flag]" if flagged else "")
+        print(f"Fetching {url}{tag}")
         prod = scrape_product(url, specs, img_dir, debug_dir)
         prod["flagged"] = flagged
+        prod["solo"] = solo
         products.append(prod)
 
     pages = paginate(products)

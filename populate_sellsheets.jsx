@@ -152,6 +152,55 @@
     return lines.join("\r");
   }
 
+  function specColFrame(doc, slot, kind, c) {
+    // kind "H" = header, "B" = body. Naming, in priority order:
+    //   Specs_<slot>_Col_H<c> / Specs_<slot>_Col<c>   (any slot)
+    //   Specs_Col_H<c>        / Specs_Col<c>          (slot 1 shorthand)
+    var names = [];
+    if (kind === "H") {
+      names.push("Specs_" + slot + "_Col_H" + c);
+      if (slot === 1) names.push("Specs_Col_H" + c);
+    } else {
+      names.push("Specs_" + slot + "_Col" + c);
+      if (slot === 1) names.push("Specs_Col" + c);
+    }
+    for (var i = 0; i < names.length; i++) {
+      var it = findItem(doc, names[i]);
+      if (it && it.typename === "TextFrame") return it;
+    }
+    return null;
+  }
+
+  function fillSpecColumns(doc, slot, table) {
+    // Returns true if column-style frames were found and filled.
+    if (!table || !specColFrame(doc, slot, "B", 1)) return false;
+    var headers = table.headers || [];
+    var rows = table.rows || [];
+    var MAXCOL = 8;
+    for (var c = 1; c <= MAXCOL; c++) {
+      var body = specColFrame(doc, slot, "B", c);
+      var head = specColFrame(doc, slot, "H", c);
+      if (!body && !head) {
+        if (c > headers.length) break;
+        continue;
+      }
+      var lines = [];
+      for (var r = 0; r < rows.length; r++) {
+        if (rows[r].length === 1) {
+          // item-type group header: text in column 1, blank line elsewhere
+          lines.push(c === 1 ? rows[r][0] : "");
+        } else {
+          lines.push(c <= rows[r].length ? String(rows[r][c - 1]) : "");
+        }
+      }
+      var headerText = c <= headers.length ? headers[c - 1] : "";
+      var bodyText = c <= headers.length ? lines.join("\r") : "";
+      if (head) { try { head.locked = false; } catch (e) {} head.contents = headerText; }
+      if (body) { try { body.locked = false; } catch (e) {} body.contents = bodyText; }
+    }
+    return true;
+  }
+
   function sanitize(s) {
     return (s || "sellsheet").replace(/[^A-Za-z0-9_\- ]/g, "").replace(/\s+/g, "_");
   }
@@ -172,6 +221,7 @@
   pageFiles.sort(function (a, b) { return a.name < b.name ? -1 : 1; });
 
   var templates = {
+    x1: new File(tplFolder.fsName + "/x1_per_page.ai"),
     x2: new File(tplFolder.fsName + "/x2_per_page.ai"),
     x3: new File(tplFolder.fsName + "/x3_per_page.ai")
   };
@@ -179,6 +229,7 @@
     alert("Could not find x2_per_page.ai / x3_per_page.ai in " + tplFolder.fsName);
     return;
   }
+  if (!templates.x1.exists) templates.x1 = templates.x2; // 1-up optional
 
   var report = [];
 
@@ -214,8 +265,28 @@
         }
       }
 
-      if (!setText(doc, "Copy_" + n, bulletsBlock(prod.bullets || []))) miss.push("Copy_" + n);
-      if (!setText(doc, "Specs_" + n, specsBlock(prod.spec_rows || []))) miss.push("Specs_" + n);
+      // Details_N = feature bullets; Copy_N = description paragraphs.
+      // Templates without a Details_N frame keep legacy behavior:
+      // bullets land in Copy_N.
+      var hasDetails = setText(doc, "Details_" + n, bulletsBlock(prod.bullets || []));
+      var copyText = hasDetails
+        ? String(prod.description || "").replace(/\n/g, "\r")
+        : bulletsBlock(prod.bullets || []);
+      if (!setText(doc, "Copy_" + n, copyText) && !hasDetails) miss.push("Copy_" + n);
+
+      // Alt_N = second product image, if the site had one
+      var altFrame = findItem(doc, "Alt_" + n);
+      if (altFrame) {
+        var placedAlt = false;
+        if (prod.extra_images && prod.extra_images.length) {
+          placedAlt = placeInto(doc, "Alt_" + n,
+            new File(imagesFolder.fsName + "/" + prod.extra_images[0]), "cover");
+        }
+        if (!placedAlt) altFrame.hidden = true;
+      }
+      if (!fillSpecColumns(doc, n, prod.spec_table)) {
+        if (!setText(doc, "Specs_" + n, specsBlock(prod.spec_rows || []))) miss.push("Specs_" + n);
+      }
       if (prod.colors_line) {
         if (!setText(doc, "Colors_" + n, prod.colors_line)) miss.push("Colors_" + n);
       }
@@ -230,8 +301,11 @@
       setText(doc, "Copy_" + e, "");
       setText(doc, "Specs_" + e, "");
       setText(doc, "Colors_" + e, "");
+      fillSpecColumns(doc, e, { headers: [], rows: [] });
+      setText(doc, "Details_" + e, "");
       var ef = findItem(doc, "Hero_" + e); if (ef) ef.hidden = true;
       var el = findItem(doc, "Logo_" + e); if (el) el.hidden = true;
+      var ea = findItem(doc, "Alt_" + e); if (ea) ea.hidden = true;
     }
 
     restoreLayers(layerStates);

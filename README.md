@@ -64,9 +64,12 @@ slot N (1 = top):
 | `Name_N` | text | Product title (only used when no logo exists) |
 | `Hero_N` | rectangle | Product photo (cover-fit; rectangle auto-hides) |
 | `Copy_N` | text area | Feature bullets (template's paragraph style supplies the bullet characters) |
-| `Specs_N` | text area | Spec table rows — single text area with tab stops, NOT Area Type columns, NOT separate frames per cell |
+| `Specs_Col_H1..` + `Specs_Col1..` | text frames | Spec table as per-column frames: `Specs_Col_H1` = column 1's header, `Specs_Col1` = column 1's body (one row per line — keep identical leading across columns so rows align). On multi-product templates use `Specs_2_Col1` etc. for slot 2+. Unused columns are blanked; leave a header frame unnamed to keep it static |
+| `Specs_N` | text area | LEGACY spec table: single text area with tab-separated rows (used only when no column frames exist) |
 | `Colors_N` | text | Availability line ("Available in White and *Ecru") |
 | `PageTitle` / `PageNum` | text | Collection title / page number (optional) |
 
-Templates must have exactly ONE artboard. Keep the spec-table header row and
+Templates: `x1_per_page.ai` (optional — 1-product pages fall back to the
+2-up if absent), `x2_per_page.ai`, `x3_per_page.ai`. Templates must have
+exactly ONE artboard. Keep the spec-table header row and
 stripe artwork as static art — the script writes only the data rows.

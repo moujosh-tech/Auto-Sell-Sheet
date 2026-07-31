@@ -10,10 +10,11 @@ pip3 install requests beautifulsoup4 openpyxl
 ## Adding a collection to runs/ (the routine task)
 
 1. Create/edit `urls.txt` in the repo root (gitignored — it's scratch):
-   one product URL per line, good → better → best order. Append ` *` to any
-   product that needs the roomier 2-up layout. Any page containing a flagged
-   product holds max 2 products; pages with fewer than 3 products use the
-   2-up template.
+   one product URL per line, good → better → best order. Flags:
+   ` *` = product needs the roomier 2-up layout (its page holds max 2);
+   ` **` = product gets a full page to itself (the 1-up template).
+   Pages hold 3 products otherwise; the template always matches the page's
+   product count (x3/x2/x1).
 
 2. Fetch into a committed run folder (straight quotes only — beware macOS
    smart quotes if copying commands from Notes):
