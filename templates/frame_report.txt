@@ -1,0 +1,21 @@
+Frame report for: x1_per_page.ai
+
+[Alt_1]  ->  PathItem
+[Hero_1]  ->  PathItem
+[Logo_1]  ->  PathItem
+[Specs_Col_H5]  ->  TextFrame
+[Specs_Col_H4]  ->  TextFrame
+[Specs_Col_H3]  ->  TextFrame
+[Specs_Col_H2]  ->  TextFrame
+[Colors_1]  ->  TextFrame
+[Specs_Col5]  ->  TextFrame
+[Specs_Col4]  ->  TextFrame
+[Specs_Col3]  ->  TextFrame
+[Specs_Col2]  ->  TextFrame
+[Specs_Col1]  ->  TextFrame
+[Specs_Col_H1]  ->  TextFrame
+[Details_1]  ->  TextFrame
+[Copy_1]  ->  TextFrame
+[Grid]  ->  GroupItem
+
+Total objects: 107  |  Named: 17  |  Text frames: 14

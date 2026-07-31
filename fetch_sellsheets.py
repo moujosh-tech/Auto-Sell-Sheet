@@ -29,7 +29,7 @@ import os
 import re
 import sys
 import unicodedata
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 
 import requests
 from bs4 import BeautifulSoup
@@ -62,7 +62,13 @@ def norm_size(s: str) -> str:
 
 def handle_from_url(url: str) -> str:
     path = urlparse(url).path.rstrip("/")
-    return path.split("/")[-1].replace(".json", "")
+    seg = path.split("/")[-1].replace(".json", "")
+    seg = unquote(seg)  # %C2%AE -> ®, etc. (browser-bar copies)
+    # Shopify handles are ASCII slugs: drop any non-slug chars and collapse
+    # separators left behind by decoded symbols
+    seg = re.sub(r"[^A-Za-z0-9-]+", "-", seg).strip("-").lower()
+    seg = re.sub(r"-{2,}", "-", seg)
+    return seg
 
 
 def fetch(url: str) -> requests.Response:
@@ -291,7 +297,8 @@ def build_spec_rows(handle, size_sections, specs):
 
 def scrape_product(url, specs, img_dir, debug_dir=None):
     handle = handle_from_url(url)
-    page = fetch(url)
+    page = fetch(url)  # fetch the URL exactly as given (site handles may
+                       # legitimately contain %-encoded symbols like ®)
     if debug_dir:
         with open(os.path.join(debug_dir, handle + ".html"), "w",
                   encoding="utf-8") as f:
