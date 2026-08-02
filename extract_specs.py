@@ -224,8 +224,16 @@ def write_specs(records, mapping_path, path="specs.csv"):
     grouped = OrderedDict()  # key -> {row, colors:set}
     for r in records:
         blk = r["block"].upper()
+        # longest (most specific) matching block_match wins, so a short
+        # brand name like "Martex Simplicity" never steals rows from a more
+        # specific "Martex Simplicity - Sheets"
+        best = None
         for handle, match in mapping:
-            if match in blk:
+            if match.upper() in blk and (best is None or len(match) > len(best[1])):
+                best = (handle, match)
+        if best:
+            handle, match = best
+            if True:
                 key = (handle, r["item_type"].upper(), r["size_type"].upper(),
                        r["gsm"], r["dimensions"].upper())
                 g = grouped.setdefault(key, {"row": {
@@ -240,7 +248,6 @@ def write_specs(records, mapping_path, path="specs.csv"):
                 }, "colors": set()})
                 if r["color"]:
                     g["colors"].add(r["color"])
-                break
 
     # star rows whose alt-color availability differs from the product norm:
     # if only SOME rows of a handle come in the alt color, star those rows;

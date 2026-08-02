@@ -1,0 +1,275 @@
+{
+  "collection": "simplicity",
+  "page": 1,
+  "page_count": 1,
+  "template": "x1",
+  "products": [
+    {
+      "handle": "martex-simplicity-sheets",
+      "url": "https://www.westpointhospitality.com/products/martex-simplicity-sheets",
+      "name": "Martex® Simplicity Sheets",
+      "logo": "martex-simplicity-sheets_logo.svg",
+      "hero": "martex-simplicity-sheets_hero.jpg",
+      "extra_images": [
+        "martex-simplicity-sheets_2.webp"
+      ],
+      "description": "When reliability matters, Martex ® Simplicity T180 sheets deliver. Crafted to meet the high demands of institutional use, these lab tested sheets strike the perfect balance between comfort, durability, and affordability—making them a trusted choice for dormitories, hospitals, military housing, and more.\n\nEngineered for longevity, the sheets are constructed with a crisp percale weave that offers a soft, inviting feel while holding up under repeated use and commercial laundering. Whether you're outfitting a large facility or just looking for a dependable bedding solution, Martex ® Simplicity sheets maintain their quality wash after wash .\n\nAvailable in a range of sizes, these sheets are built with thoughtful details that boost performance. In a crowded market, Martex ® Simplicity stands apart—offering comfort you can feel and durability you can trust, all at a price that makes sense.\n\nTrade Agreements Act (TAA) compliant making it eligible for sale to the U.S. government .",
+      "bullets": [
+        "180 Thread Count",
+        "60% Cotton / 40% Polyester",
+        "Soft, Single Pick Percale Weave",
+        "Lab Tested for Key Hospitality Needs",
+        "Wrinkle-Resistant",
+        "Sustainably Sourced",
+        "Enhanced Durability: Side and Corner Elastic on Fitted Sheets, Lockstitch Hems on Flat Sheets",
+        "Available in Fresh White",
+        "TrueFitTM Color Indicators for Size Identification: Twin- Navy, Full- White, Queen- Green, King- Gold",
+        "Made in Green",
+        "OEKO-TEX® STeP Certified",
+        "TAA Compliant for GSA® Contracts"
+      ],
+      "spec_rows": [
+        [
+          "Pillow Case"
+        ],
+        [
+          "Standard",
+          "20\" x 30\"",
+          "72"
+        ],
+        [
+          "King",
+          "20\" x 40\"",
+          "72"
+        ],
+        [
+          "Flat Sheet"
+        ],
+        [
+          "Twin",
+          "66\" x 109\"",
+          "24"
+        ],
+        [
+          "Full",
+          "81\" x 109\"",
+          "24"
+        ],
+        [
+          "Queen",
+          "90\" x 109\"",
+          "12"
+        ],
+        [
+          "King",
+          "108\" x 109\"",
+          "12"
+        ],
+        [
+          "Fitted Sheet"
+        ],
+        [
+          "Twin",
+          "39\" x 75\" x 9\"",
+          "24"
+        ],
+        [
+          "Twin XL",
+          "39\" x 80\" x 9\"",
+          "24"
+        ],
+        [
+          "Full",
+          "54\" x 80\" x 9\"",
+          "24"
+        ],
+        [
+          "Queen",
+          "60\" x 80\" x 9\"",
+          "12"
+        ],
+        [
+          "King",
+          "78\" x 80\" x 9\"",
+          "12"
+        ],
+        [
+          "Twin XL",
+          "39\" x 80\" x 12\"",
+          "24"
+        ],
+        [
+          "Full",
+          "54\" x 80\" x 12\"",
+          "24"
+        ],
+        [
+          "Queen",
+          "60\" x 80\" x 12\"",
+          "12"
+        ],
+        [
+          "King",
+          "78\" x 80\" x 12\"",
+          "12"
+        ],
+        [
+          "Twin XL",
+          "39\" x 80\" x 15\"",
+          "24"
+        ],
+        [
+          "Full",
+          "54\" x 80\" x 15\"",
+          "24"
+        ],
+        [
+          "Queen",
+          "60\" x 80\" x 15\"",
+          "12"
+        ],
+        [
+          "King",
+          "78\" x 80\" x 15\"",
+          "12"
+        ],
+        [
+          "Draw Sheet",
+          "54\" x 72\"",
+          "24"
+        ],
+        [
+          "Draw Sheet",
+          "54\" x 81\"",
+          "24"
+        ]
+      ],
+      "spec_table": {
+        "headers": [
+          "Size",
+          "Dimensions",
+          "Case Pack"
+        ],
+        "rows": [
+          [
+            "Pillow Case"
+          ],
+          [
+            "Standard",
+            "20\" x 30\"",
+            "72"
+          ],
+          [
+            "King",
+            "20\" x 40\"",
+            "72"
+          ],
+          [
+            "Flat Sheet"
+          ],
+          [
+            "Twin",
+            "66\" x 109\"",
+            "24"
+          ],
+          [
+            "Full",
+            "81\" x 109\"",
+            "24"
+          ],
+          [
+            "Queen",
+            "90\" x 109\"",
+            "12"
+          ],
+          [
+            "King",
+            "108\" x 109\"",
+            "12"
+          ],
+          [
+            "Fitted Sheet"
+          ],
+          [
+            "Twin",
+            "39\" x 75\" x 9\"",
+            "24"
+          ],
+          [
+            "Twin XL",
+            "39\" x 80\" x 9\"",
+            "24"
+          ],
+          [
+            "Full",
+            "54\" x 80\" x 9\"",
+            "24"
+          ],
+          [
+            "Queen",
+            "60\" x 80\" x 9\"",
+            "12"
+          ],
+          [
+            "King",
+            "78\" x 80\" x 9\"",
+            "12"
+          ],
+          [
+            "Twin XL",
+            "39\" x 80\" x 12\"",
+            "24"
+          ],
+          [
+            "Full",
+            "54\" x 80\" x 12\"",
+            "24"
+          ],
+          [
+            "Queen",
+            "60\" x 80\" x 12\"",
+            "12"
+          ],
+          [
+            "King",
+            "78\" x 80\" x 12\"",
+            "12"
+          ],
+          [
+            "Twin XL",
+            "39\" x 80\" x 15\"",
+            "24"
+          ],
+          [
+            "Full",
+            "54\" x 80\" x 15\"",
+            "24"
+          ],
+          [
+            "Queen",
+            "60\" x 80\" x 15\"",
+            "12"
+          ],
+          [
+            "King",
+            "78\" x 80\" x 15\"",
+            "12"
+          ],
+          [
+            "Draw Sheet",
+            "54\" x 72\"",
+            "24"
+          ],
+          [
+            "Draw Sheet",
+            "54\" x 81\"",
+            "24"
+          ]
+        ]
+      },
+      "colors_line": "Available in Fresh White",
+      "flagged": false,
+      "solo": false
+    }
+  ]
+}

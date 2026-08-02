@@ -1,0 +1,40 @@
+{
+  "collection": "BasicsComforter",
+  "page": 1,
+  "page_count": 1,
+  "template": "x1",
+  "products": [
+    {
+      "handle": "martex-basics-comforter",
+      "url": "https://www.westpointhospitality.com/products/martex%C2%AE-basics-comforter",
+      "name": "Martex® Basics Comforter",
+      "logo": "martex-basics-comforter_logo.svg",
+      "hero": "martex-basics-comforter_hero.jpg",
+      "extra_images": [
+        "martex-basics-comforter_2.jpg",
+        "martex-basics-comforter_3.jpg",
+        "martex-basics-comforter_4.jpg"
+      ],
+      "description": "Formerly branded as Martex Rx. Encompassing our best-selling institutional products for the military, group housing, and healthcare facilities, this program brings together bedding in a variety of products and colors for your customers' use . Where durability and comfort collide for hospitality-grade products that are economical and TAA Compliant for GSA® Contracts.\n\nAvailable in an array of neutral colors , they seamlessly coordinate with a wide range of color palettes to create a sharp, stylish impression that guests will remember. Whether updating a single room or outfitting an entire property, Martex ® Basics delivers long-lasting performance and timeless style.",
+      "bullets": [
+        "Offered in Twin, Full/Queen, King Sizes",
+        "Available in Navy, Tan, Silver, and Khaki",
+        "70% Polyester/ 30% Cotton",
+        "6 oz/sq yd EcoPure Fiberfill",
+        "Channel Quilting",
+        "Clean, Knife Edge Finishing",
+        "Self-Reversing",
+        "OEKO-TEX® STeP Certified",
+        "TAA Compliant for Use in GSA® Contracts"
+      ],
+      "spec_rows": [],
+      "spec_table": {
+        "headers": [],
+        "rows": []
+      },
+      "colors_line": "Available in Navy, Tan, Silver, and Khaki",
+      "flagged": false,
+      "solo": false
+    }
+  ]
+}

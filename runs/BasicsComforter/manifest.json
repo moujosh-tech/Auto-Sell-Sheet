@@ -1,0 +1,13 @@
+{
+  "collection": "BasicsComforter",
+  "page_count": 1,
+  "pages": [
+    {
+      "file": "page_01.json",
+      "template": "x1",
+      "products": [
+        "martex-basics-comforter"
+      ]
+    }
+  ]
+}

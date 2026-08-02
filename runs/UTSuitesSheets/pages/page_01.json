@@ -1,0 +1,187 @@
+{
+  "collection": "UTSuitesSheets",
+  "page": 1,
+  "page_count": 1,
+  "template": "x1",
+  "products": [
+    {
+      "handle": "martex-ultra-touch-suites-sheet-collection",
+      "url": "https://www.westpointhospitality.com/products/martex-ultra-touch-suites-sheet-collection",
+      "name": "Martex® Ultra Touch Suites Sheet Collection",
+      "logo": "martex-ultra-touch-suites-sheet-collection_logo.svg",
+      "hero": "martex-ultra-touch-suites-sheet-collection_hero.jpg",
+      "extra_images": [
+        "martex-ultra-touch-suites-sheet-collection_2.jpg",
+        "martex-ultra-touch-suites-sheet-collection_3.jpg",
+        "martex-ultra-touch-suites-sheet-collection_4.jpg"
+      ],
+      "description": "The Martex® Ultra Touch Suites Sheets are designed to provide a heavier, more substantial feel for those looking for ultimate comfort and durability. Constructed with a unique twill weave made from 100% polyester microfiber yarns, these sheets are lightly brushed to offer an exceptional softness and breathability.\n\nMicrofiber is known for its durability, smoothness, and quick-drying qualities, which not only enhance the comfort of your guests but also speed up the laundering process. The heavier GSM gives the sheets a luxurious hand feel, making them perfect for colder climates where warmth and coziness are essential.\n\nFor added durability, both the fitted and flat sheets feature lockstitch hems, ensuring they stand up to frequent use. The fitted sheet is equipped with side elastics that extend into the corners to prevent shifting, keeping the sheets securely in place for a smooth, comfortable sleep experience.\n\nThe Martex® Ultra Touch Suites Sheets offer the perfect balance of luxury, durability, and comfort, making them an unparalleled microfiber option.",
+      "bullets": [
+        "120 GSM",
+        "100% Brushed Polyester",
+        "Soft, Twill Weave",
+        "Luxurious Feel and Weight",
+        "Lab Tested for Hospitality Use",
+        "Wrinkle Resistant",
+        "Moisture Wicking",
+        "Quick Dry",
+        "Enhanced Durability: Side Elastic Extended into the Corners on Fitted Sheets, Lockstitch Hems on Flat Sheets",
+        "TrueFitTM Color Indicators for Size Identification: Twin- Navy, Full- White, Queen- Green, King- Gold",
+        "Available in Fresh White",
+        "OEKO-TEX® STeP Certified"
+      ],
+      "spec_rows": [
+        [
+          "Pillow Case"
+        ],
+        [
+          "Standard",
+          "20\" x 30\"",
+          "72"
+        ],
+        [
+          "Queen",
+          "20\" x 34\"",
+          "72"
+        ],
+        [
+          "King",
+          "20\" x 40\"",
+          "72"
+        ],
+        [
+          "Flat Sheet"
+        ],
+        [
+          "Twin",
+          "68\" x 108\"",
+          "24"
+        ],
+        [
+          "Full",
+          "88\" x 108\"",
+          "24"
+        ],
+        [
+          "Queen",
+          "98\" x 108\"",
+          "24"
+        ],
+        [
+          "King",
+          "116\" x 108\"",
+          "24"
+        ],
+        [
+          "Fitted Sheet"
+        ],
+        [
+          "Twin",
+          "39\" x 75\" x 12\"",
+          "24"
+        ],
+        [
+          "Twin XL",
+          "39\" x 80\" x 16\"",
+          "24"
+        ],
+        [
+          "Full XL",
+          "54\" x 80\" x 16\"",
+          "24"
+        ],
+        [
+          "Queen",
+          "60\" x 80\" x 16\"",
+          "24"
+        ],
+        [
+          "King",
+          "78\" x 80\" x 16\"",
+          "24"
+        ]
+      ],
+      "spec_table": {
+        "headers": [
+          "Size",
+          "Dimensions",
+          "Case Pack"
+        ],
+        "rows": [
+          [
+            "Pillow Case"
+          ],
+          [
+            "Standard",
+            "20\" x 30\"",
+            "72"
+          ],
+          [
+            "Queen",
+            "20\" x 34\"",
+            "72"
+          ],
+          [
+            "King",
+            "20\" x 40\"",
+            "72"
+          ],
+          [
+            "Flat Sheet"
+          ],
+          [
+            "Twin",
+            "68\" x 108\"",
+            "24"
+          ],
+          [
+            "Full",
+            "88\" x 108\"",
+            "24"
+          ],
+          [
+            "Queen",
+            "98\" x 108\"",
+            "24"
+          ],
+          [
+            "King",
+            "116\" x 108\"",
+            "24"
+          ],
+          [
+            "Fitted Sheet"
+          ],
+          [
+            "Twin",
+            "39\" x 75\" x 12\"",
+            "24"
+          ],
+          [
+            "Twin XL",
+            "39\" x 80\" x 16\"",
+            "24"
+          ],
+          [
+            "Full XL",
+            "54\" x 80\" x 16\"",
+            "24"
+          ],
+          [
+            "Queen",
+            "60\" x 80\" x 16\"",
+            "24"
+          ],
+          [
+            "King",
+            "78\" x 80\" x 16\"",
+            "24"
+          ]
+        ]
+      },
+      "colors_line": "Available in Fresh White",
+      "flagged": false,
+      "solo": false
+    }
+  ]
+}

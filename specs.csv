@@ -21,34 +21,27 @@ martex-classic-sheet-collection,,Fitted Sheet,,"36"" x 80"" x 12""",,,24
 martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"36"" x 84"" x 12""",,,24
 martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"42"" x 80"" x 12""",,,24
 martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"42"" x 84"" x 12""",,,24
-martex-simplicity-towel-collection,Pillow Case,Standard,,"20"" x 30""",,,72
-martex-simplicity-towel-collection,Pillow Case,King,,"20"" x 40""",,,72
-martex-simplicity-towel-collection,Flat Sheet,Twin,,"66"" x 109""",,,24
-martex-simplicity-towel-collection,Flat Sheet,Full,,"81"" x 109""",,,24
-martex-simplicity-towel-collection,Flat Sheet,Queen,,"90"" x 109""",,,12
-martex-simplicity-towel-collection,Flat Sheet,King,,"108"" x 109""",,,12
-martex-simplicity-towel-collection,Fitted Sheet,Twin,,"39"" x 75"" x 9""",,,24
-martex-simplicity-towel-collection,Fitted Sheet,Twin XL,,"39"" x 80"" x 9""",,,24
-martex-simplicity-towel-collection,Fitted Sheet,Full,,"54"" x 80"" x 9""",,,24
-martex-simplicity-towel-collection,Fitted Sheet,Queen,,"60"" x 80"" x 9""",,,12
-martex-simplicity-towel-collection,Fitted Sheet,King,,"78"" x 80"" x 9""",,,12
-martex-simplicity-towel-collection,Fitted Sheet,Twin XL,,"39"" x 80"" x 12""",,,24
-martex-simplicity-towel-collection,Fitted Sheet,Full,,"54"" x 80"" x 12""",,,24
-martex-simplicity-towel-collection,Fitted Sheet,Queen,,"60"" x 80"" x 12""",,,12
-martex-simplicity-towel-collection,Fitted Sheet,King,,"78"" x 80"" x 12""",,,12
-martex-simplicity-towel-collection,Fitted Sheet,Twin XL,,"39"" x 80"" x 15""",,,24
-martex-simplicity-towel-collection,Fitted Sheet,Full,,"54"" x 80"" x 15""",,,24
-martex-simplicity-towel-collection,Fitted Sheet,Queen,,"60"" x 80"" x 15""",,,12
-martex-simplicity-towel-collection,Fitted Sheet,King,,"78"" x 80"" x 15""",,,12
-martex-simplicity-towel-collection,,Draw Sheet,,"54"" x 72""",,,24
-martex-simplicity-towel-collection,,Draw Sheet,,"54"" x 81""",,,24
-martex-simplicity-towel-collection,,Bath Sheet,542,"35"" x 68""",22,lbs/dz,24
-martex-simplicity-towel-collection,,Bath Towel,683,"27"" x 54""",17,lbs/dz,24
-martex-simplicity-towel-collection,,Bath Towel,563,"27"" x 54""",14,lbs/dz,36
-martex-simplicity-towel-collection,,Hand Towel,549,"16"" x 30""",4.5,lbs/dz,120
-martex-simplicity-towel-collection,,Hand Towel,407,"16"" x 27""",3,lbs/dz,120
-martex-simplicity-towel-collection,,Wash Cloth,520,"13"" x 13""",1.5,lbs/dz,300
-martex-simplicity-towel-collection,,Wash Cloth,407,"12"" x 12""",1,lbs/dz,300
+martex-simplicity-sheets,Pillow Case,Standard,,"20"" x 30""",,,72
+martex-simplicity-sheets,Pillow Case,King,,"20"" x 40""",,,72
+martex-simplicity-sheets,Flat Sheet,Twin,,"66"" x 109""",,,24
+martex-simplicity-sheets,Flat Sheet,Full,,"81"" x 109""",,,24
+martex-simplicity-sheets,Flat Sheet,Queen,,"90"" x 109""",,,12
+martex-simplicity-sheets,Flat Sheet,King,,"108"" x 109""",,,12
+martex-simplicity-sheets,Fitted Sheet,Twin,,"39"" x 75"" x 9""",,,24
+martex-simplicity-sheets,Fitted Sheet,Twin XL,,"39"" x 80"" x 9""",,,24
+martex-simplicity-sheets,Fitted Sheet,Full,,"54"" x 80"" x 9""",,,24
+martex-simplicity-sheets,Fitted Sheet,Queen,,"60"" x 80"" x 9""",,,12
+martex-simplicity-sheets,Fitted Sheet,King,,"78"" x 80"" x 9""",,,12
+martex-simplicity-sheets,Fitted Sheet,Twin XL,,"39"" x 80"" x 12""",,,24
+martex-simplicity-sheets,Fitted Sheet,Full,,"54"" x 80"" x 12""",,,24
+martex-simplicity-sheets,Fitted Sheet,Queen,,"60"" x 80"" x 12""",,,12
+martex-simplicity-sheets,Fitted Sheet,King,,"78"" x 80"" x 12""",,,12
+martex-simplicity-sheets,Fitted Sheet,Twin XL,,"39"" x 80"" x 15""",,,24
+martex-simplicity-sheets,Fitted Sheet,Full,,"54"" x 80"" x 15""",,,24
+martex-simplicity-sheets,Fitted Sheet,Queen,,"60"" x 80"" x 15""",,,12
+martex-simplicity-sheets,Fitted Sheet,King,,"78"" x 80"" x 15""",,,12
+martex-simplicity-sheets,,Draw Sheet,,"54"" x 72""",,,24
+martex-simplicity-sheets,,Draw Sheet,,"54"" x 81""",,,24
 martex-millennium-250-solid-bedding-collection,Pillow Case,*Standard,,"20"" x 30""",,,72
 martex-millennium-250-solid-bedding-collection,Pillow Case,Queen,,"20"" x 34""",,,72
 martex-millennium-250-solid-bedding-collection,Pillow Case,*King,,"20"" x 40""",,,72
@@ -75,6 +68,13 @@ martex-cam-towel-collection,,Hand Towel,475,"16"" x 27""",3.5,lbs/dz,24
 martex-cam-towel-collection,,*Hand Towel,407,"16"" x 27""",3,lbs/dz,24
 martex-cam-towel-collection,,*Wash Cloth,407,"12"" x 12""",1,lbs/dz,48
 martex-cam-towel-collection,,*Bath Mat,684,"20"" x 30""",7,lbs/dz,12
+martex-simplicity-towel-collection,,Bath Sheet,542,"35"" x 68""",22,lbs/dz,24
+martex-simplicity-towel-collection,,Bath Towel,683,"27"" x 54""",17,lbs/dz,24
+martex-simplicity-towel-collection,,Bath Towel,563,"27"" x 54""",14,lbs/dz,36
+martex-simplicity-towel-collection,,Hand Towel,549,"16"" x 30""",4.5,lbs/dz,120
+martex-simplicity-towel-collection,,Hand Towel,407,"16"" x 27""",3,lbs/dz,120
+martex-simplicity-towel-collection,,Wash Cloth,520,"13"" x 13""",1.5,lbs/dz,300
+martex-simplicity-towel-collection,,Wash Cloth,407,"12"" x 12""",1,lbs/dz,300
 martex-atelier-bella-throw-blanket,,Throw Blanket,600,"50"" x 70""",,,6
 martex-sovereign-blanket,,Twin Blanket,,"66"" x 90""",2.7,,4
 martex-sovereign-blanket,,Full Blanket,,"80"" x 90""",3.2,,4

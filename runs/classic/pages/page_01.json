@@ -1,0 +1,165 @@
+{
+  "collection": "classic",
+  "page": 1,
+  "page_count": 1,
+  "template": "x1",
+  "products": [
+    {
+      "handle": "martex-classic-sheet-collection",
+      "url": "https://www.westpointhospitality.com/products/martex-classic-sheet-collection",
+      "name": "Martex® Classic Sheet Collection",
+      "logo": "martex-classic-sheet-collection_logo.svg",
+      "hero": "martex-classic-sheet-collection_hero.webp",
+      "extra_images": [
+        "martex-classic-sheet-collection_2.webp",
+        "martex-classic-sheet-collection_3.webp"
+      ],
+      "description": "Great things take time—and the Martex ® Classic Sheet Collection is no exception. Developed with precision and purpose, this collection represents a perfect union of affordability, durability, and comfort , making it the ideal choice for high-traffic environments such as hotels, hospitals, dormitories, and military housing .\n\nThough categorized as an economy option , the Martex ® Classic Sheet Collection delivers a surprisingly soft, luxurious feel that rivals much higher thread count linens. Meticulously lab-tested for quality and performance, these sheets are engineered to withstand the rigors of frequent commercial laundering while maintaining their comfort and structure.\n\nTrade Agreements Act (TAA) compliant making it eligible for sale to the U.S. government.",
+      "bullets": [
+        "60% Cotton / 40% Polyester",
+        "Smooth, Single Pick Percale Weave",
+        "Wrinkle-Resistant",
+        "Sustainably Sourced",
+        "Lab Tested",
+        "Enhanced Durability: Side and Corner Elastic on Fitted Sheets, Lockstitch Hems on Flat Sheets",
+        "TrueFitTM Color Indicators for Size Identification: Twin- Navy",
+        "Available in Fresh White",
+        "Made in Green",
+        "OEKO-TEX® STeP Certified",
+        "TAA Compliant for GSA® Contracts"
+      ],
+      "spec_rows": [
+        [
+          "Pillowcase"
+        ],
+        [
+          "Standard",
+          "20\" x 30\"",
+          "72"
+        ],
+        [
+          "Flat Sheet"
+        ],
+        [
+          "Twin",
+          "66\" x 104\"",
+          "24"
+        ],
+        [
+          "Twin",
+          "66\" x 110\"",
+          "24"
+        ],
+        [
+          "Fitted Sheet"
+        ],
+        [
+          "Twin",
+          "39\" x 75\" x 9\"",
+          "24"
+        ],
+        [
+          "Twin XL",
+          "39\" x 80\" x 9\"",
+          "24"
+        ],
+        [
+          "Twin XL",
+          "39\" x 80\" x 12\"",
+          "24"
+        ],
+        [
+          "Fitted Sheet",
+          "36\" x 80\" x 12\"",
+          "24"
+        ],
+        [
+          "Twin XL",
+          "36\" x 84\" x 12\"",
+          "24"
+        ],
+        [
+          "Twin XL",
+          "42\" x 80\" x 12\"",
+          "24"
+        ],
+        [
+          "Twin XL",
+          "42\" x 84\" x 12\"",
+          "24"
+        ]
+      ],
+      "spec_table": {
+        "headers": [
+          "Size",
+          "Dimensions",
+          "Case Pack"
+        ],
+        "rows": [
+          [
+            "Pillowcase"
+          ],
+          [
+            "Standard",
+            "20\" x 30\"",
+            "72"
+          ],
+          [
+            "Flat Sheet"
+          ],
+          [
+            "Twin",
+            "66\" x 104\"",
+            "24"
+          ],
+          [
+            "Twin",
+            "66\" x 110\"",
+            "24"
+          ],
+          [
+            "Fitted Sheet"
+          ],
+          [
+            "Twin",
+            "39\" x 75\" x 9\"",
+            "24"
+          ],
+          [
+            "Twin XL",
+            "39\" x 80\" x 9\"",
+            "24"
+          ],
+          [
+            "Twin XL",
+            "39\" x 80\" x 12\"",
+            "24"
+          ],
+          [
+            "Fitted Sheet",
+            "36\" x 80\" x 12\"",
+            "24"
+          ],
+          [
+            "Twin XL",
+            "36\" x 84\" x 12\"",
+            "24"
+          ],
+          [
+            "Twin XL",
+            "42\" x 80\" x 12\"",
+            "24"
+          ],
+          [
+            "Twin XL",
+            "42\" x 84\" x 12\"",
+            "24"
+          ]
+        ]
+      },
+      "colors_line": "Available in Fresh White",
+      "flagged": false,
+      "solo": false
+    }
+  ]
+}
