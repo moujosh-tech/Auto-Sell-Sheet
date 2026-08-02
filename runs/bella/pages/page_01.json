@@ -1,0 +1,63 @@
+{
+  "collection": "bella",
+  "page": 1,
+  "page_count": 1,
+  "template": "x1",
+  "products": [
+    {
+      "handle": "martex-atelier-bella-throw-blanket",
+      "url": "https://www.westpointhospitality.com/products/martex%C2%AE-atelier-bella-throw-blanket",
+      "name": "Martex® Atelier Bella Throw Blanket",
+      "logo": "martex-atelier-bella-throw-blanket_logo.svg",
+      "hero": "martex-atelier-bella-throw-blanket_hero.webp",
+      "extra_images": [
+        "martex-atelier-bella-throw-blanket_2.jpg",
+        "martex-atelier-bella-throw-blanket_3.webp",
+        "martex-atelier-bella-throw-blanket_4.webp",
+        "martex-atelier-bella-throw-blanket_5.webp",
+        "martex-atelier-bella-throw-blanket_6.webp",
+        "martex-atelier-bella-throw-blanket_7.webp",
+        "martex-atelier-bella-throw-blanket_8.webp",
+        "martex-atelier-bella-throw-blanket_9.webp"
+      ],
+      "description": "The Martex ® Atelier Bella Throw is the perfect accessory to create a cozy, luxurious atmosphere that feels just like home! Made from 100% knitted cotton, this oversized throw adds a touch of warmth and sophistication to any space. Its neutral shades of pearl grey and latte effortlessly complement minimalist or modern decor, making it an ideal fit for luxury properties. Whether draped over a chair for an afternoon nap or used for added warmth during the night, this throw will leave your guests feeling comfortable and asking where they can get one of their own. A must-have for completing any space!",
+      "bullets": [
+        "50” x 70”",
+        "Oversized Luxury",
+        "100% Cotton Knitted",
+        "600 GSM",
+        "All Season Comfort",
+        "Lab Tested for Hospitality Use",
+        "Available in Pearl Grey and Latte",
+        "OEKO-TEX® Standard 100"
+      ],
+      "spec_rows": [
+        [
+          "Throw Blanket",
+          "50\" x 70\"",
+          "600",
+          "6"
+        ]
+      ],
+      "spec_table": {
+        "headers": [
+          "Size",
+          "Dimensions",
+          "GSM",
+          "Case Pack"
+        ],
+        "rows": [
+          [
+            "Throw Blanket",
+            "50\" x 70\"",
+            "600",
+            "6"
+          ]
+        ]
+      },
+      "colors_line": "Available in Pearl Grey and Latte",
+      "flagged": false,
+      "solo": false
+    }
+  ]
+}

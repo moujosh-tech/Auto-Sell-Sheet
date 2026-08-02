@@ -1,0 +1,89 @@
+{
+  "collection": "ultratouchsuites",
+  "page": 1,
+  "page_count": 1,
+  "template": "x1",
+  "products": [
+    {
+      "handle": "five-star-hotel-collection-down-alternative-comforter",
+      "url": "https://www.westpointhospitality.com/products/five-star-hotel-collection%C2%AE-down-alternative-comforter",
+      "name": "Five Star Hotel Collection® Down Alternative Comforter",
+      "logo": "five-star-hotel-collection-down-alternative-comforter_logo.svg",
+      "hero": "five-star-hotel-collection-down-alternative-comforter_hero.jpg",
+      "extra_images": [
+        "five-star-hotel-collection-down-alternative-comforter_2.jpg",
+        "five-star-hotel-collection-down-alternative-comforter_3.jpg",
+        "five-star-hotel-collection-down-alternative-comforter_4.jpg",
+        "five-star-hotel-collection-down-alternative-comforter_5.jpg"
+      ],
+      "description": "Transform your bedroom into a five-star retreat with the Five Star Hotel Collection Comforter. Crafted for those who appreciate the finer things, this premium comforter combines elegant design with exceptional functionality.\n\nWhether used as a plush duvet insert or a standalone blanket, its carefully balanced fill weight ensures year-round comfort and breathability. The ultra-soft fabric finish adds a layer of indulgence, while the high-performance EcoPure TM fiberfill —a sustainable, eco-conscious alternative—offers cloud-like softness with a conscience.\n\nPerfect for upscale bedrooms or anyone seeking hotel-quality comfort at home, this comforter delivers luxury, warmth, and timeless style in one.",
+      "bullets": [
+        "233 Thread",
+        "100% Sustainable Cotton Shell",
+        "Light (7oz) and Medium (10oz) Fill Options",
+        "Corded Shell for Tailored Finish",
+        "Double Needle Top Stitching for Extended Durability",
+        "Box Quilted Center with Outer Border for Luxurious, Unique Design",
+        "All Sizes Have a 7\" Border",
+        "Box Size: Twin - 10x10” F/Q - 15x13” King - 15x13”",
+        "Filled with EcoPureTM Recycled Fiber",
+        "TrueFitTM Indicator Colors for Size Identification",
+        "Lab Tested for Hospitality Use",
+        "Easy Care, Machine Wash and Dry",
+        "OEKO-TEX® STeP Certified",
+        "TAA Compliant for GSA® Contracts"
+      ],
+      "spec_rows": [
+        [
+          "Twin Comforter",
+          "68\" x 94\"",
+          "34.5 oz",
+          "2"
+        ],
+        [
+          "Full/Queen Comforter",
+          "92\" x 94\"",
+          "46.7 oz",
+          "2"
+        ],
+        [
+          "King Comforter",
+          "106\" x 94\"",
+          "53.8 oz",
+          "2"
+        ]
+      ],
+      "spec_table": {
+        "headers": [
+          "Size",
+          "Dimensions",
+          "Weight",
+          "Case Pack"
+        ],
+        "rows": [
+          [
+            "Twin Comforter",
+            "68\" x 94\"",
+            "34.5 oz",
+            "2"
+          ],
+          [
+            "Full/Queen Comforter",
+            "92\" x 94\"",
+            "46.7 oz",
+            "2"
+          ],
+          [
+            "King Comforter",
+            "106\" x 94\"",
+            "53.8 oz",
+            "2"
+          ]
+        ]
+      },
+      "colors_line": "available in gallery view`, shareSuccess: `Link copied to clipboard`, pauseSlideshow: `Pause slideshow`, playSlideshow: `Play slideshow`, recipientFormExpanded: `Gift card recipient form expanded`, recipientFormCollapsed: `Gift card recipient form collapsed`, countrySelectorSearchCount: `[count] countries/regions found`, };",
+      "flagged": false,
+      "solo": false
+    }
+  ]
+}

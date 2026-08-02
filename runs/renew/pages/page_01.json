@@ -5,27 +5,27 @@
   "template": "x1",
   "products": [
     {
-      "handle": "vellux%C2%AE-renew-blanket",
+      "handle": "vellux-renew-blanket",
       "url": "https://www.westpointhospitality.com/products/vellux%C2%AE-renew-blanket",
       "name": "Vellux® Renew Blanket",
-      "logo": "vellux%C2%AE-renew-blanket_logo.svg",
-      "hero": "vellux%C2%AE-renew-blanket_hero.webp",
+      "logo": "vellux-renew-blanket_logo.svg",
+      "hero": "vellux-renew-blanket_hero.webp",
       "extra_images": [
-        "vellux%C2%AE-renew-blanket_2.webp",
-        "vellux%C2%AE-renew-blanket_3.webp",
-        "vellux%C2%AE-renew-blanket_4.webp",
-        "vellux%C2%AE-renew-blanket_5.jpg",
-        "vellux%C2%AE-renew-blanket_6.jpg",
-        "vellux%C2%AE-renew-blanket_7.jpg",
-        "vellux%C2%AE-renew-blanket_8.jpg",
-        "vellux%C2%AE-renew-blanket_9.jpg",
-        "vellux%C2%AE-renew-blanket_10.jpg",
-        "vellux%C2%AE-renew-blanket_11.jpg",
-        "vellux%C2%AE-renew-blanket_12.jpg",
-        "vellux%C2%AE-renew-blanket_13.jpg",
-        "vellux%C2%AE-renew-blanket_14.jpg",
-        "vellux%C2%AE-renew-blanket_15.jpg",
-        "vellux%C2%AE-renew-blanket_16.jpg"
+        "vellux-renew-blanket_2.webp",
+        "vellux-renew-blanket_3.webp",
+        "vellux-renew-blanket_4.webp",
+        "vellux-renew-blanket_5.jpg",
+        "vellux-renew-blanket_6.jpg",
+        "vellux-renew-blanket_7.jpg",
+        "vellux-renew-blanket_8.jpg",
+        "vellux-renew-blanket_9.jpg",
+        "vellux-renew-blanket_10.jpg",
+        "vellux-renew-blanket_11.jpg",
+        "vellux-renew-blanket_12.jpg",
+        "vellux-renew-blanket_13.jpg",
+        "vellux-renew-blanket_14.jpg",
+        "vellux-renew-blanket_15.jpg",
+        "vellux-renew-blanket_16.jpg"
       ],
       "description": "The Trusted Classic — Reinvented for Today’s Guest Experience\n\nFor over 65 years, the Vellux ® Blanket has established the standard for comfort, durability, and timeless appeal. This updated version of the Vellux ® -branded blanket remains cozy yet breathable, lightweight yet warm.\n\nCrafted from 100% polyester, the chenille Vellux ® Renew Blanket features a velvety-soft texture that gently insulates without bulk, helping guests stay warm and comfortable while allowing for an energy-efficient thermostat setting . It is heavier than its predecessor, with a 260 GSM offering year-round versatility for any room or climate.\n\nExceptionally durable, with 1\" lockstitch hems on all four sides . Vellux ® Renew is machine washable , maintaining its plush feel and clean look—no pilling, matting, or shedding . P erfect for layering or standalone use , this updated version is hypoallergenic and fast drying.\n\nDesigned for modern spaces, it is offered in a curated palette of on-trend colors, the Vellux ® Blanket effortlessly complements today’s design-forward hospitality interiors. Whether used in-room, on extra bedding shelves, or in guest closets, it’s a versatile staple your guests will appreciate—and your team will trust.",
       "bullets": [
@@ -41,10 +41,53 @@
         "Easy Care",
         "Available in Navy, Ivory and Tan"
       ],
-      "spec_rows": [],
+      "spec_rows": [
+        [
+          "Twin Blanket",
+          "66\" x 90\"",
+          "2.31",
+          "4"
+        ],
+        [
+          "Full/Queen Blanket",
+          "90\" x 90\"",
+          "3.13",
+          "4"
+        ],
+        [
+          "King Blanket",
+          "108\" x 90\"",
+          "3.74",
+          "4"
+        ]
+      ],
       "spec_table": {
-        "headers": [],
-        "rows": []
+        "headers": [
+          "Size",
+          "Dimensions",
+          "Weight",
+          "Case Pack"
+        ],
+        "rows": [
+          [
+            "Twin Blanket",
+            "66\" x 90\"",
+            "2.31",
+            "4"
+          ],
+          [
+            "Full/Queen Blanket",
+            "90\" x 90\"",
+            "3.13",
+            "4"
+          ],
+          [
+            "King Blanket",
+            "108\" x 90\"",
+            "3.74",
+            "4"
+          ]
+        ]
       },
       "colors_line": "Available in Navy, Ivory and Tan",
       "flagged": false,

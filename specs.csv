@@ -1,4 +1,26 @@
 handle,item_type,size,gsm,dimensions,weight,weight_unit,case_pack
+martex-ultra-touch-suites-sheet-collection,Pillow Case,Standard,,"20"" x 30""",,,72
+martex-ultra-touch-suites-sheet-collection,Pillow Case,Queen,,"20"" x 34""",,,72
+martex-ultra-touch-suites-sheet-collection,Pillow Case,King,,"20"" x 40""",,,72
+martex-ultra-touch-suites-sheet-collection,Flat Sheet,Twin,,"68"" x 108""",,,24
+martex-ultra-touch-suites-sheet-collection,Flat Sheet,Full,,"88"" x 108""",,,24
+martex-ultra-touch-suites-sheet-collection,Flat Sheet,Queen,,"98"" x 108""",,,24
+martex-ultra-touch-suites-sheet-collection,Flat Sheet,King,,"116"" x 108""",,,24
+martex-ultra-touch-suites-sheet-collection,Fitted Sheet,Twin,,"39"" x 75"" x 12""",,,24
+martex-ultra-touch-suites-sheet-collection,Fitted Sheet,Twin XL,,"39"" x 80"" x 16""",,,24
+martex-ultra-touch-suites-sheet-collection,Fitted Sheet,Full XL,,"54"" x 80"" x 16""",,,24
+martex-ultra-touch-suites-sheet-collection,Fitted Sheet,Queen,,"60"" x 80"" x 16""",,,24
+martex-ultra-touch-suites-sheet-collection,Fitted Sheet,King,,"78"" x 80"" x 16""",,,24
+martex-classic-sheet-collection,Pillowcase,Standard,,"20"" x 30""",,,72
+martex-classic-sheet-collection,Flat Sheet,Twin,,"66"" x 104""",,,24
+martex-classic-sheet-collection,Flat Sheet,Twin,,"66"" x 110""",,,24
+martex-classic-sheet-collection,Fitted Sheet,Twin,,"39"" x 75"" x 9""",,,24
+martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"39"" x 80"" x 9""",,,24
+martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"39"" x 80"" x 12""",,,24
+martex-classic-sheet-collection,,Fitted Sheet,,"36"" x 80"" x 12""",,,24
+martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"36"" x 84"" x 12""",,,24
+martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"42"" x 80"" x 12""",,,24
+martex-classic-sheet-collection,Fitted Sheet,Twin XL,,"42"" x 84"" x 12""",,,24
 martex-simplicity-towel-collection,Pillow Case,Standard,,"20"" x 30""",,,72
 martex-simplicity-towel-collection,Pillow Case,King,,"20"" x 40""",,,72
 martex-simplicity-towel-collection,Flat Sheet,Twin,,"66"" x 109""",,,24
@@ -53,6 +75,7 @@ martex-cam-towel-collection,,Hand Towel,475,"16"" x 27""",3.5,lbs/dz,24
 martex-cam-towel-collection,,*Hand Towel,407,"16"" x 27""",3,lbs/dz,24
 martex-cam-towel-collection,,*Wash Cloth,407,"12"" x 12""",1,lbs/dz,48
 martex-cam-towel-collection,,*Bath Mat,684,"20"" x 30""",7,lbs/dz,12
+martex-atelier-bella-throw-blanket,,Throw Blanket,600,"50"" x 70""",,,6
 martex-sovereign-blanket,,Twin Blanket,,"66"" x 90""",2.7,,4
 martex-sovereign-blanket,,Full Blanket,,"80"" x 90""",3.2,,4
 martex-sovereign-blanket,,Queen Blanket,,"90"" x 90""",3.6,,2
@@ -69,6 +92,9 @@ martex-atelier-luxe-blanket,,Twin Blanket,280,"66"" x 90""",,,4
 martex-atelier-luxe-blanket,,Full Blanket,280,"80"" x 90""",,,4
 martex-atelier-luxe-blanket,,Queen Blanket,280,"90"" x 90""",,,2
 martex-atelier-luxe-blanket,,King Blanket,280,"108"" x 90""",,,2
+five-star-hotel-collection-down-alternative-comforter,,Twin Comforter,,"68"" x 94""",34.5 oz,,2
+five-star-hotel-collection-down-alternative-comforter,,Full/Queen Comforter,,"92"" x 94""",46.7 oz,,2
+five-star-hotel-collection-down-alternative-comforter,,King Comforter,,"106"" x 94""",53.8 oz,,2
 vellux-renew-blanket,,Twin Blanket,,"66"" x 90""",2.31,,4
 vellux-renew-blanket,,Full/Queen Blanket,,"90"" x 90""",3.13,,4
 vellux-renew-blanket,,King Blanket,,"108"" x 90""",3.74,,4
